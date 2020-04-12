@@ -12,6 +12,14 @@ class App extends React.Component {
 
       }
     }
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin(data) {
+    this.setState({
+      loggedInStatus: "LOGGED_IN",
+      user: data.user
+    })
   }
 
   render() {
@@ -20,9 +28,12 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/"
-              render={props => (<Home {...props} loggedInStatus={this.state.loggedInStatus} />)} />
+              render={props => (<Home {...props}
+                handleLogin={this.handleLogin}
+                loggedInStatus={this.state.loggedInStatus} />)} />
             <Route exact path="/dashboard"
-              render={props => (<Dashboard {...props} loggedInStatus={this.state.loggedInStatus} />)} />
+              render={props => (
+                <Dashboard {...props} loggedInStatus={this.state.loggedInStatus} />)} />
           </Switch>
         </Router>
       </div>
