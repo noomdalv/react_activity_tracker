@@ -12,25 +12,27 @@ class Home extends React.Component {
 
   handleSuccesfulAuth(data) {
     this.props.handleLogin(data);
-    this.props.history.push("/dashboard");
+    this.props.history.push('/dashboard');
   }
 
   handleLogoutClick() {
-    axios.delete("http://localhost:3001/logout", { withCredentials: true})
-    .then(response => {
-      this.props.handleLogout();
-    })
-    .catch(error => {
-      console.error("Logout error", error);
-    })
-
+    axios.delete('http://localhost:3001/logout', { withCredentials: true })
+      .then(response => {
+        this.props.handleLogout();
+      })
+      .catch(error => {
+        console.error('Logout error', error);
+      });
   }
 
   render() {
     return (
       <div>
         <h1>Home</h1>
-        <h2>Status: {this.props.loggedInStatus}</h2>
+        <h2>
+          Status:
+          {this.props.loggedInStatus}
+        </h2>
         <button type="button" onClick={() => this.handleLogoutClick()}>Logout</button>
         <Registration handleSuccesfulAuth={this.handleSuccesfulAuth} />
         <Login handleSuccesfulAuth={this.handleSuccesfulAuth} />

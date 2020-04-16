@@ -1,76 +1,72 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
+import { checkLoginStatus, loggedIn, notLoggedIn } from './actions';
+import { connect } from 'react-redux';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
-    }
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  checkLoginStatus() {
-    axios.get("http://localhost:3001/logged_in", { withCredentials:true })
-    .then(response => {
-      if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
-        this.setState({
-          loggedInStatus: "LOGGED_IN",
-          user: response.data.user
-        })
-      } else if (!response.data.logged_in && this.state.loggedInStatus === "LOGGED_IN") {
-        this.setState({
-          loggedInStatus: "NOT_LOGGED_IN",
-          user: {}
-        })
-      }
-    })
-    .catch(error => {
-      console.error("logged in error =>", error)
-    })
-  }
-
   componentDidMount() {
-    this.checkLoginStatus();
+    console.log("mounting")
+    this.props.checkLoginStatus();
   }
 
   handleLogin(data) {
-    this.setState({
-      loggedInStatus: "LOGGED_IN",
-      user: data.user
-    })
+    console.log("handling login", data)
+    this.props.loggedIn(data);
   }
 
   handleLogout() {
-    this.setState({
-      loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
-    })
+    this.props.notLoggedIn();
   }
 
   render() {
+    // const { notLoggedIn, loggedIn } = this.props
+    console.log("app props >", this.props)
     return (
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/"
-              render={props => (<Home {...props}
-                handleLogin={this.handleLogin}
-                handleLogout={this.handleLogout}
-                loggedInStatus={this.state.loggedInStatus} />)} />
-            <Route exact path="/dashboard"
+            <Route
+              exact
+              path="/"
               render={props => (
-                <Dashboard {...props} loggedInStatus={this.state.loggedInStatus} />)} />
+                <Home
+                  {...props}
+                  handleLogin={this.handleLogin}
+                  handleLogout={this.handleLogout}
+                  loggedInStatus={this.props.status.login}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/dashboard"
+              render={props => (
+                <Dashboard {...props} loggedInStatus={this.props.status.login} />)}
+            />
           </Switch>
         </Router>
       </div>
-    )
+    );
   }
-};
+}
 
-export default App;
+const mapStateToProps = state => ({
+  status: state.status
+});
+
+const mapDispatchToProps = dispatch => ({
+  checkLoginStatus: () => dispatch(checkLoginStatus()),
+  loggedIn: (data) => dispatch(loggedIn(data)),
+  notLoggedIn: () => dispatch(notLoggedIn())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
