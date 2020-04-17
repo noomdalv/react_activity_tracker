@@ -14,9 +14,11 @@
  "extends": ["airbnb", "plugin:react/recommended"],
  "plugins": ["react"],
  "rules": {
+   "no-console": 0,
    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
    "import/no-unresolved": "off",
    "no-shadow": "off",
-   "arrow-parens": ["error", "as-needed"]
+   "arrow-parens": ["error", "as-needed"],
+   "react/jsx-props-no-spreading": ["error", {"custom": "ignore"}]
  }
 }

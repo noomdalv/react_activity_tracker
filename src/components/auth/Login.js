@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class Login extends React.Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errors: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -24,10 +24,11 @@ class Login extends React.Component {
     },
     { withCredentials: true })
       .then(response => {
-        console.log("handleSubmit response >", response);
+        console.log('handleSubmit response >', response);
         if (response.data.logged_in) {
-          console.log("handling success auth")
-          this.props.handleSuccesfulAuth(response.data);
+          const { handleSuccesfulAuth } = this.props;
+          console.log('handling success auth');
+          handleSuccesfulAuth(response.data);
         }
       })
       .catch(error => {
@@ -42,6 +43,7 @@ class Login extends React.Component {
   }
 
   render() {
+    const { email, password } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -49,7 +51,7 @@ class Login extends React.Component {
             type="email"
             name="email"
             placeholder="Email"
-            value={this.state.email}
+            value={email}
             onChange={this.handleChange}
             required
           />
@@ -58,7 +60,7 @@ class Login extends React.Component {
             type="password"
             name="password"
             placeholder="Password"
-            value={this.state.password}
+            value={password}
             onChange={this.handleChange}
             required
           />
@@ -68,5 +70,9 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  handleSuccesfulAuth: PropTypes.func.isRequired,
+};
 
 export default Login;

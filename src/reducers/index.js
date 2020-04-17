@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import loginReducer from './login_reducer';
 
 const rootReducer = combineReducers({
-  status: loginReducer
+  status: loginReducer,
 });
 
 export default rootReducer;

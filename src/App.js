@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { checkLoginStatus, loggedIn, notLoggedIn } from './actions';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { checkLoginStatus, loggedIn, notLoggedIn } from './actions';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 
@@ -13,22 +14,22 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("mounting")
-    this.props.checkLoginStatus();
+    const { checkLoginStatus } = this.props;
+    checkLoginStatus();
   }
 
   handleLogin(data) {
-    console.log("handling login", data)
-    this.props.loggedIn(data);
+    const { loggedIn } = this.props;
+    loggedIn(data);
   }
 
   handleLogout() {
-    this.props.notLoggedIn();
+    const { notLoggedIn } = this.props;
+    notLoggedIn();
   }
 
   render() {
-    // const { notLoggedIn, loggedIn } = this.props
-    console.log("app props >", this.props)
+    const { status } = this.props;
     return (
       <div className="App">
         <Router>
@@ -41,7 +42,7 @@ class App extends React.Component {
                   {...props}
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
-                  loggedInStatus={this.props.status.login}
+                  status={status}
                 />
               )}
             />
@@ -49,7 +50,7 @@ class App extends React.Component {
               exact
               path="/dashboard"
               render={props => (
-                <Dashboard {...props} loggedInStatus={this.props.status.login} />)}
+                <Dashboard {...props} status={status} />)}
             />
           </Switch>
         </Router>
@@ -58,14 +59,21 @@ class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  status: PropTypes.instanceOf(Object).isRequired,
+  checkLoginStatus: PropTypes.func.isRequired,
+  loggedIn: PropTypes.func.isRequired,
+  notLoggedIn: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
-  status: state.status
+  status: state.status,
 });
 
 const mapDispatchToProps = dispatch => ({
   checkLoginStatus: () => dispatch(checkLoginStatus()),
-  loggedIn: (data) => dispatch(loggedIn(data)),
-  notLoggedIn: () => dispatch(notLoggedIn())
+  loggedIn: data => dispatch(loggedIn(data)),
+  notLoggedIn: () => dispatch(notLoggedIn()),
 });
 
 

@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
-import Registration from './auth/Registration.js';
-import Login from './auth/Login.js';
+import Registration from './auth/Registration';
+import Login from './auth/Login';
 
 class Home extends React.Component {
   constructor(props) {
@@ -11,14 +12,17 @@ class Home extends React.Component {
   }
 
   handleSuccesfulAuth(data) {
-    this.props.handleLogin(data);
-    this.props.history.push('/dashboard');
+    const { handleLogin, history } = this.props;
+    handleLogin(data);
+    history.push('/dashboard');
   }
 
   handleLogoutClick() {
+    const { handleLogout } = this.props;
     axios.delete('http://localhost:3001/logout', { withCredentials: true })
       .then(response => {
-        this.props.handleLogout();
+        console.log('handle logout response >', response);
+        handleLogout();
       })
       .catch(error => {
         console.error('Logout error', error);
@@ -26,12 +30,13 @@ class Home extends React.Component {
   }
 
   render() {
+    const { status } = this.props;
     return (
       <div>
         <h1>Home</h1>
         <h2>
           Status:
-          {this.props.loggedInStatus}
+          {status.login}
         </h2>
         <button type="button" onClick={() => this.handleLogoutClick()}>Logout</button>
         <Registration handleSuccesfulAuth={this.handleSuccesfulAuth} />
@@ -40,5 +45,12 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  status: PropTypes.instanceOf(Object).isRequired,
+  handleLogin: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  history: PropTypes.instanceOf(Array).isRequired,
+};
 
 export default Home;
