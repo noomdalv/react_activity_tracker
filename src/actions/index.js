@@ -14,15 +14,22 @@ export const loggedIn = data => ({
   data,
 });
 
-// const handleLogout = () => {
-//   notLoggedIn();
-// }
-
-
 export const handleSuccesfulAuth = data => dispatch => {
-  console.log("hmm ?")
   dispatch(loggedIn(data));
   history.push('/dashboard');
+}
+
+export const handleLogout = () => dispatch => {
+  axios.delete('http://localhost:3001/logout', { withCredentials: true })
+    .then(response => {
+      console.log('handle logout response >', response);            
+      dispatch(notLoggedIn());
+      console.log("pushing to /")
+      history.push('/');
+    })
+    .catch(error => {
+      console.error('Logout error', error);
+    });
 }
 
 
@@ -31,8 +38,10 @@ export const checkLoginStatus = () => (dispatch, getState) => {
     .then(response => {
       console.log("checkLoginStatus response >", response)
       if (response.data.logged_in && getState().status.login === 'NOT_LOGGED_IN') {
+        console.log("logged in")
         dispatch(loggedIn(response.data));
       } else if (!response.data.logged_in && getState().status.login === 'LOGGED_IN') {
+        console.log("not logged in")
         dispatch(notLoggedIn());
       }
     })

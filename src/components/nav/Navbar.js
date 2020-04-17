@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { handleLogout } from '../../actions'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ handleLogout }) => {
     return (
       <div id={styles.navbar}>
         <div id={styles.divlink}>
@@ -13,10 +14,10 @@ const Navbar = () => {
               <Link to="/signup">Sign Up</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/logout">Logout</Link>
+              <button type="button" onClick={() => handleLogout()}>Logout</button>
             </li>
           </ul>
         </div>
@@ -32,4 +33,8 @@ const mapStateToProps = state => ({
   status: state.status
 })
 
-export default connect(mapStateToProps, null)(Navbar);
+const mapDispatchToProps = dispatch => ({
+  handleLogout: () => dispatch(handleLogout())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

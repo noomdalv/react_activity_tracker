@@ -1,12 +1,10 @@
 #navbar {
   display: flex;
   background: #41B5E9;
-  border: solid red 1px;
 }
 
 #divlink {
   width: 100%;
-  border: solid orange 1px;
 }
 
 #linklist {
@@ -17,7 +15,7 @@
 }
 
 #linklist a {
+  margin-right: 20px;
   text-decoration: none;
   color: white;
-  border: solid green 1px;
 }

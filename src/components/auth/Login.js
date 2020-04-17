@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { handleSuccesfulAuth } from '../../actions';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,8 +28,7 @@ class Login extends React.Component {
       .then(response => {
         console.log('handleSubmit response >', response);
         if (response.data.logged_in) {
-          const { handleSuccesfulAuth } = this.props;
-          console.log('handling success auth');
+          const { handleSuccesfulAuth } = this.props;          
           handleSuccesfulAuth(response.data);
         }
       })
@@ -75,4 +76,8 @@ Login.propTypes = {
   handleSuccesfulAuth: PropTypes.func.isRequired,
 };
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  handleSuccesfulAuth: data => dispatch(handleSuccesfulAuth(data)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);

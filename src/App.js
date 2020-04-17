@@ -12,55 +12,19 @@ import Registration from './components/auth/Registration';
 export const history = createBrowserHistory()
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-  }
-
-  componentDidMount() {
-    const { checkLoginStatus } = this.props;
-    checkLoginStatus();
-  }
-
-  handleLogin(data) {
-    const { loggedIn } = this.props;
-    loggedIn(data);
-  }
-
-  handleLogout() {
-    const { notLoggedIn } = this.props;
-    notLoggedIn();
-  }
 
   render() {
-    const { status } = this.props;
     return (
-      <div className="App">
       <Router history={history}>
-        <Navbar />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={props => (
-              <Home
-                {...props}
-                handleLogin={this.handleLogin}
-                handleLogout={this.handleLogout}
-                status={status}
-              />
-            )}
-          />
-          <Route path="/signup" component={Registration} />
-          <Route
-            path="/dashboard"
-            render={props => (
-              <Dashboard {...props} status={status} />)}
-          />
-        </Switch>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/signup" component={Registration} />
+            <Route path="/dashboard" component={Dashboard} />
+          </Switch>
+        </div>
       </Router>
-      </div>
     );
   }
 }

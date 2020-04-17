@@ -8,9 +8,10 @@ const defaultState = {
 const loginReducer = (state = defaultState, action) => {
   switch (action.type) {
     case NOT_LOGGED_IN:
+    console.log('reducer not_logged_in action >', action);
       return state;
     case LOGGED_IN:
-      console.log('reducer action >', action);
+      console.log('reducer logged_in action >', action);
       return ({
         login: LOGGED_IN,
         user: action.data.user,
