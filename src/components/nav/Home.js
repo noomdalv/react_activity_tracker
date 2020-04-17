@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Registration from './auth/Registration';
-import Login from './auth/Login';
+import Login from '../auth/Login';
 
 class Home extends React.Component {
   constructor(props) {
@@ -38,8 +37,7 @@ class Home extends React.Component {
           Status:
           {status.login}
         </h2>
-        <button type="button" onClick={() => this.handleLogoutClick()}>Logout</button>
-        <Registration handleSuccesfulAuth={this.handleSuccesfulAuth} />
+        <button type="button" onClick={() => this.handleLogoutClick()}>Logout</button>        
         <Login handleSuccesfulAuth={this.handleSuccesfulAuth} />
       </div>
     );
@@ -50,7 +48,7 @@ Home.propTypes = {
   status: PropTypes.instanceOf(Object).isRequired,
   handleLogin: PropTypes.func.isRequired,
   handleLogout: PropTypes.func.isRequired,
-  history: PropTypes.instanceOf(Array).isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Home;

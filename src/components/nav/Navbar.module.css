@@ -1,0 +1,23 @@
+#navbar {
+  display: flex;
+  background: #41B5E9;
+  border: solid red 1px;
+}
+
+#divlink {
+  width: 100%;
+  border: solid orange 1px;
+}
+
+#linklist {
+  border: solid black 1px;
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+}
+
+#linklist a {
+  text-decoration: none;
+  color: white;
+  border: solid green 1px;
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { handleSuccesfulAuth } from '../../actions'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Registration extends React.Component {
   constructor(props) {
@@ -83,7 +85,7 @@ class Registration extends React.Component {
 
           <input
             type="password"
-            name="password_confirmation"
+            name="passwordConfirmation"
             placeholder="Password confirmation"
             value={passwordConfirmation}
             onChange={this.handleChange}
@@ -101,4 +103,9 @@ Registration.propTypes = {
   handleSuccesfulAuth: PropTypes.func.isRequired,
 };
 
-export default Registration;
+const mapDispatchToProps = dispatch => ({
+  handleSuccesfulAuth: (data) => dispatch(handleSuccesfulAuth(data))
+})
+
+
+export default connect(null, mapDispatchToProps)(Registration);

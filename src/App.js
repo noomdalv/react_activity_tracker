@@ -1,10 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom'
+import { createBrowserHistory } from 'history';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { checkLoginStatus, loggedIn, notLoggedIn } from './actions';
-import Home from './components/Home';
-import Dashboard from './components/Dashboard';
+import Navbar from './components/nav/Navbar';
+import Home from './components/nav/Home';
+import Dashboard from './components/nav/Dashboard';
+import Registration from './components/auth/Registration';
+
+export const history = createBrowserHistory()
 
 class App extends React.Component {
   constructor(props) {
@@ -32,28 +37,29 @@ class App extends React.Component {
     const { status } = this.props;
     return (
       <div className="App">
-        <Router>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <Home
-                  {...props}
-                  handleLogin={this.handleLogin}
-                  handleLogout={this.handleLogout}
-                  status={status}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/dashboard"
-              render={props => (
-                <Dashboard {...props} status={status} />)}
-            />
-          </Switch>
-        </Router>
+      <Router history={history}>
+        <Navbar />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Home
+                {...props}
+                handleLogin={this.handleLogin}
+                handleLogout={this.handleLogout}
+                status={status}
+              />
+            )}
+          />
+          <Route path="/signup" component={Registration} />
+          <Route
+            path="/dashboard"
+            render={props => (
+              <Dashboard {...props} status={status} />)}
+          />
+        </Switch>
+      </Router>
       </div>
     );
   }
@@ -75,6 +81,5 @@ const mapDispatchToProps = dispatch => ({
   loggedIn: data => dispatch(loggedIn(data)),
   notLoggedIn: () => dispatch(notLoggedIn()),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
