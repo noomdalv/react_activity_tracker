@@ -4,19 +4,19 @@
 }
 
 #loginForm {
-  width: 25%;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  margin: 50px auto;
+  margin: 50px auto;  
 }
 
 input {
   margin-top: 10px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 #loginBtn {
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 16px;
 }

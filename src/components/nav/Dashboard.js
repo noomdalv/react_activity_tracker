@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Record from '../auth/Record'
 import { connect } from 'react-redux';
 import styles from './Dashboard.module.css';
 
@@ -14,6 +15,7 @@ const Dashboard = ({ status }) => {
           User:
           { status.user.name }
         </h2>
+        <Record />
       </div>
     )
   } else {
