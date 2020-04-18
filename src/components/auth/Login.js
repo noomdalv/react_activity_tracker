@@ -3,6 +3,7 @@ import axios from 'axios';
 import { handleSuccesfulAuth } from '../../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styles from './Login.module.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Login extends React.Component {
       .then(response => {
         console.log('handleSubmit response >', response);
         if (response.data.logged_in) {
-          const { handleSuccesfulAuth } = this.props;          
+          const { handleSuccesfulAuth } = this.props;
           handleSuccesfulAuth(response.data);
         }
       })
@@ -46,8 +47,8 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div id={styles.login}>
+        <form id={styles.loginForm} onSubmit={this.handleSubmit}>
           <input
             type="email"
             name="email"
@@ -65,7 +66,7 @@ class Login extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <button type="submit">Login</button>
+        <button id={styles.loginBtn} type="submit">Login</button>
         </form>
       </div>
     );

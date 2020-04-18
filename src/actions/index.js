@@ -19,12 +19,11 @@ export const handleSuccesfulAuth = data => dispatch => {
   history.push('/dashboard');
 }
 
-export const handleLogout = () => dispatch => {
+export const handleLogout = (event) => dispatch => {  
   axios.delete('http://localhost:3001/logout', { withCredentials: true })
     .then(response => {
-      console.log('handle logout response >', response);            
+      console.log('handle logout response >', response);
       dispatch(notLoggedIn());
-      console.log("pushing to /")
       history.push('/');
     })
     .catch(error => {

@@ -5,19 +5,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './Navbar.module.css';
 
-const Navbar = ({ handleLogout }) => {
+const Navbar = ({ handleLogout, status }) => {
+  console.log("navbar status >", status)
     return (
       <div id={styles.navbar}>
         <div id={styles.divlink}>
           <ul id={styles.linklist}>
             <li>
-              <Link to="/signup">Sign Up</Link>
+              {status.login === "LOGGED_IN" ? <Link to="#">user: {status.user.name}</Link>
+                : <Link to="/signup">Sign Up</Link> }
             </li>
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <button type="button" onClick={() => handleLogout()}>Logout</button>
+              {status.login === "LOGGED_IN" ? <Link to="/" onClick={() => handleLogout()}>Logout</Link>
+                : <Link to="/">Login</Link> }
             </li>
           </ul>
         </div>

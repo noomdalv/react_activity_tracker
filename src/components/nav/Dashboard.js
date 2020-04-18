@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styles from './Dashboard.module.css';
 
 const Dashboard = ({ status }) => {
   console.log('dashboard status >', status)
 
   if (status.login === 'LOGGED_IN') {
     return (
-      <div>
+      <div id={styles.dashboard}>
         <h1>Dashboard</h1>
-        <h2>
-          Status:
-          { status.login }
-        </h2>
         <h2>
           User:
           { status.user.name }
@@ -21,7 +18,7 @@ const Dashboard = ({ status }) => {
     )
   } else {
     return (
-      <h1>Loading Data....</h1>
+      <h1>You need to login first</h1>
     )
   }
 

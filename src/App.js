@@ -1,27 +1,32 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history';
+import { checkLoginStatus } from './actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { checkLoginStatus, loggedIn, notLoggedIn } from './actions';
 import Navbar from './components/nav/Navbar';
 import Home from './components/nav/Home';
 import Dashboard from './components/nav/Dashboard';
 import Registration from './components/auth/Registration';
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory({forceRefresh:true})
 
 class App extends React.Component {
-
+  componentDidMount() {
+    const { checkLoginStatus } = this.props
+    checkLoginStatus();
+  }
   render() {
+    const { status } = this.props
+    console.log("app status >", status)
     return (
       <Router history={history}>
         <div className="App">
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/signup" component={Registration} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route exact path="/signup" component={Registration} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
       </Router>
@@ -31,9 +36,6 @@ class App extends React.Component {
 
 App.propTypes = {
   status: PropTypes.instanceOf(Object).isRequired,
-  checkLoginStatus: PropTypes.func.isRequired,
-  loggedIn: PropTypes.func.isRequired,
-  notLoggedIn: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -42,8 +44,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   checkLoginStatus: () => dispatch(checkLoginStatus()),
-  loggedIn: data => dispatch(loggedIn(data)),
-  notLoggedIn: () => dispatch(notLoggedIn()),
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,30 +1,22 @@
 import React from 'react';
 import { checkLoginStatus } from '../../actions';
-// import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Login from '../auth/Login';
 
-class Home extends React.Component {
-  componentDidMount() {
-    const { checkLoginStatus } = this.props;
-    checkLoginStatus()
-  }
+const Home = ({ status }) => {
+  console.log("checkLoginStatus from Home", status)
 
-  render() {
-    const { status } = this.props;
-    console.log("home status >", status)
-        return (
-          <div>
-            <Login />
-          </div>
-        )
-    }
+  return (
+    <div>
+      <Login />
+    </div>
+  )
 }
 
 Home.propTypes = {
   status: PropTypes.instanceOf(Object).isRequired,
-  history: PropTypes.instanceOf(Object).isRequired,
+  checkLoginStatus: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
