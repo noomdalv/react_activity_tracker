@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { handleSuccesfulAuth } from '../../actions';
 import { checkLoginStatus } from '../../actions';
+import Footer from '../nav/Footer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './Login.module.css';
@@ -75,6 +76,7 @@ class Login extends React.Component {
           />
         <button id={styles.loginBtn} type="submit">Login</button>
         </form>
+        <Footer />
       </div>
     );
   }

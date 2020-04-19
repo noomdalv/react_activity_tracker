@@ -1,13 +1,12 @@
 #login {
   height: 400px;
-  border: solid black 1px;
 }
 
 #loginForm {
   width: 40%;
   display: flex;
   flex-direction: column;
-  margin: 50px auto;  
+  margin: 50px auto;
 }
 
 input {
@@ -19,4 +18,31 @@ input {
 #loginBtn {
   margin-top: 20px;
   font-size: 16px;
+}
+
+#footer {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  align-items: flex-end;
+  color: white;
+  background: #41B5E9;
+}
+
+#footer h4 {
+  width: 50%;
+  margin: 0 0 0 15px;
+  padding: 0;
+  text-align: center;
+  font-size: 30px;
+}
+
+#footer h3 {
+  width: 50%;
+  margin: 0 5px 0 0;
+  padding: 0;
+  text-align: right;
+  font-size: 16px;  
 }

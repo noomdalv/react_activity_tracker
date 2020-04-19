@@ -1,4 +1,9 @@
+body {  
+  border: solid black 1px;
+}
+
 #navbar {
+  width: 100%;
   display: flex;
   background: #41B5E9;
 }

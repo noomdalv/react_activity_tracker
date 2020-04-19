@@ -9,6 +9,7 @@ import Home from './components/nav/Home';
 import Login from './components/auth/Login';
 import Registration from './components/auth/Registration';
 import Dashboard from './components/nav/Dashboard';
+import styles from './App.module.css';
 
 export const history = createBrowserHistory()
 
@@ -25,7 +26,7 @@ class App extends React.Component {
 
     return (
       <Router history={history}>
-        <div className="App">
+        <div id={styles.app}>
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
