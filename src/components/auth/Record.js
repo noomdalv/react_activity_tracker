@@ -53,11 +53,16 @@ class Record extends React.Component {
 }
 
 Record.propTypes = {
-  
+  records: PropTypes.instanceOf(Object),
+  recordDetails: PropTypes.instanceOf(Object)
 }
+
+const mapStateToProps = state => ({
+  status: state.status
+})
 
 const mapDispatchToProps = dispatch => ({
 
 })
 
-export default connect(null, mapDispatchToProps)(Record);
+export default connect(mapStateToProps, mapDispatchToProps)(Record);

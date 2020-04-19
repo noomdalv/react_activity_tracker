@@ -5,14 +5,18 @@ import PropTypes from 'prop-types';
 import Login from '../auth/Login';
 import Dashboard from './Dashboard';
 
-const Home = ({ status }) => {
-  console.log("checkLoginStatus from Home", status)
+class Home extends React.Component {
 
-  return (
-    <div>
-      { status.login === "LOGGED_IN" ? <Dashboard /> : <Login /> }
-    </div>
-  )
+  render() {
+    const { status } = this.props;
+    console.log("home rendered", status)
+    return (
+      <div>
+        { status.login === "LOGGED_IN" ? <Dashboard /> : <Login /> }
+      </div>
+    )
+  }
+
 }
 
 Home.propTypes = {

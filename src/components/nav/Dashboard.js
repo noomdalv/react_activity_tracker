@@ -5,17 +5,25 @@ import { connect } from 'react-redux';
 import styles from './Dashboard.module.css';
 
 const Dashboard = ({ status }) => {
-  console.log('dashboard status >', status)
-
   if (status.login === 'LOGGED_IN') {
     return (
       <div id={styles.dashboard}>
         <h1>Dashboard</h1>
         <h2>
           User:
-          { status.user.name }
+          { status.user.data.name }
         </h2>
         <Record />
+        <h3>Records</h3>
+        <ul>
+          { status.user.records.map(record => {
+            return ( <li key={record + record.day}>
+              Day: {record.day},
+              Description: {record.description}
+            </li> )
+          }) }
+        </ul>
+
       </div>
     )
   } else {

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { handleSuccesfulAuth } from '../../actions';
+import { checkLoginStatus } from '../../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './Login.module.css';
@@ -14,6 +15,12 @@ class Login extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    const { checkLoginStatus } = this.props
+    checkLoginStatus();
+    console.log("mounted login, checkLoginStatus")
   }
 
   handleSubmit(event) {
@@ -79,6 +86,7 @@ Login.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   handleSuccesfulAuth: data => dispatch(handleSuccesfulAuth(data)),
+  checkLoginStatus: () => dispatch(checkLoginStatus()),
 });
 
 export default connect(null, mapDispatchToProps)(Login);
