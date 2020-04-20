@@ -5,30 +5,27 @@ import Record from '../auth/Record';
 import Menu from './Menu';
 import styles from './Dashboard.module.css';
 
-const Dashboard = ({ status }) => {
-  console.log('Dashboard status', status);
-  return (status.login === 'LOGGED_IN') ? (
-    <div id={styles.dashboard}>
-      <div id={styles.userDataContainer}>
-        <h1>Dashboard</h1>
-        <p>
-          User:
-          { status.user.data.name }
-        </p>
-        <p>
-          Email:
-          { status.user.data.email }
-        </p>
-      </div>
-
-      <div id={styles.recordContainer}>
-        <Record />
-      </div>
-
-      <Menu />
+const Dashboard = ({ status }) => ((status.login === 'LOGGED_IN') ? (
+  <div id={styles.dashboard}>
+    <div id={styles.userDataContainer}>
+      <h1>Dashboard</h1>
+      <p>
+        User:
+        { status.user.data.name }
+      </p>
+      <p>
+        Email:
+        { status.user.data.email }
+      </p>
     </div>
-  ) : (<h1>You need to login first</h1>);
-};
+
+    <div id={styles.recordContainer}>
+      <Record />
+    </div>
+
+    <Menu />
+  </div>
+) : (<h1>You need to login first</h1>));
 
 Dashboard.defaultProps = {
 

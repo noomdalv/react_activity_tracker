@@ -19,13 +19,9 @@ class App extends React.Component {
   componentDidMount() {
     const { checkLoginStatus } = this.props;
     checkLoginStatus();
-    console.log('mounted app checkLoginStatus');
   }
 
   render() {
-    const { status } = this.props;
-    console.log('App rendered status...', status);
-
     return (
       <Router history={history}>
         <div id={styles.app}>
@@ -45,17 +41,12 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  status: PropTypes.instanceOf(Object).isRequired,
   checkLoginStatus: PropTypes.func.isRequired,
 };
-
-const mapStateToProps = state => ({
-  status: state.status,
-});
 
 const mapDispatchToProps = dispatch => ({
   checkLoginStatus: () => dispatch(checkLoginStatus()),
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

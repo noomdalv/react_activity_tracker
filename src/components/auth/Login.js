@@ -34,7 +34,6 @@ class Login extends React.Component {
     },
     { withCredentials: true })
       .then(response => {
-        console.log('handleSubmit response >', response);
         if (response.data.logged_in) {
           const { handleSuccesfulAuth } = this.props;
           handleSuccesfulAuth(response.data);

@@ -40,7 +40,6 @@ class Registration extends React.Component {
           handleSuccesfulAuth(response.data);
           history.push('/dashboard');
         }
-        console.log('registration response =>', response);
       })
       .catch(error => {
         console.error('Registration error =>', error);

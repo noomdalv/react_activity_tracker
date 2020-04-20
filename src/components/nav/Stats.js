@@ -19,8 +19,6 @@ const Stats = ({ status, fetchRecords, recordData }) => {
   if (status.login === 'LOGGED_IN') {
     return (
       <div id={styles.stats}>
-        { console.log('stats status >', status)}
-        { console.log('stats recorddata >', recordData)}
         <h1>Stats</h1>
         { recordData.records.length > 0 ? (
           <div id={styles.statsInfo}>
