@@ -1,28 +1,30 @@
 import React from 'react';
-import { Router, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { checkLoginStatus } from './actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { checkLoginStatus } from './actions';
 import Navbar from './components/nav/Navbar';
 import Home from './components/nav/Home';
 import Login from './components/auth/Login';
 import Registration from './components/auth/Registration';
 import Dashboard from './components/nav/Dashboard';
+import Stats from './components/nav/Stats';
+import RecordHistory from './components/nav/RecordHistory';
 import styles from './App.module.css';
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
 class App extends React.Component {
   componentDidMount() {
-    const { checkLoginStatus } = this.props
+    const { checkLoginStatus } = this.props;
     checkLoginStatus();
-    console.log("mounted app checkLoginStatus")
+    console.log('mounted app checkLoginStatus');
   }
 
   render() {
-  const { status } = this.props
-  console.log("App rendered status...", status)
+    const { status } = this.props;
+    console.log('App rendered status...', status);
 
     return (
       <Router history={history}>
@@ -33,10 +35,12 @@ class App extends React.Component {
             <Route exact path="/signup" component={Registration} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/stats" component={Stats} />
+            <Route exact path="/history" component={RecordHistory} />
           </Switch>
         </div>
       </Router>
-    )
+    );
   }
 }
 

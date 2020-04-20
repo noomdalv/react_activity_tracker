@@ -15,6 +15,7 @@
  "plugins": ["react"],
  "rules": {
    "no-console": 0,
+   "import/no-cycle": "off",
    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
    "import/no-unresolved": "off",
    "no-shadow": "off",

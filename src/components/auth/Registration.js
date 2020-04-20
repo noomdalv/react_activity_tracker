@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { handleSuccesfulAuth } from '../../actions'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { handleSuccesfulAuth } from '../../actions';
 
 class Registration extends React.Component {
   constructor(props) {
@@ -104,8 +104,8 @@ Registration.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleSuccesfulAuth: (data) => dispatch(handleSuccesfulAuth(data))
-})
+  handleSuccesfulAuth: data => dispatch(handleSuccesfulAuth(data)),
+});
 
 
 export default connect(null, mapDispatchToProps)(Registration);

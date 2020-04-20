@@ -6,7 +6,6 @@ const defaultState = {
 };
 
 const loginReducer = (state = defaultState, action) => {
-
   switch (action.type) {
     case NOT_LOGGED_IN:
       return defaultState;

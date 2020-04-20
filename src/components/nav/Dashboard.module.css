@@ -1,3 +1,74 @@
-#dashboard {
+#dashboard, #stats, #history {
+  height: 500px;
   text-align: center;
+}
+
+/* DASHBOARD */
+
+/* RECORD */
+#addRecord input {
+}
+
+.recordDetails {
+  display: none;
+}
+
+#description {
+  height: 30px;
+  margin-top: 5px;
+}
+
+.recordDetails h3, .recordDetails h6 {
+  height: max-content;
+  margin: 5px;
+}
+
+.recordDetails input {
+  width: 35px;
+  margin: auto;
+}
+
+#trackerGrid div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.oddGrid {
+  background: #fdfdfd;
+}
+/* HISTORY */
+
+#recordHistory {
+  width: 90%;
+  margin: auto;
+  background: white;
+}
+
+#recordHistory ul {
+  padding-bottom: 30px;
+}
+
+.record {
+  text-align: left;
+  list-style-type: none;
+}
+
+/* MENU */
+
+#menu {
+  height: max-content;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  background: #41B5E9;
+}
+
+#menu div {
+  flex: 1;
+  border: solid black 1px;
+}
+
+#menu a {
+  text-decoration: none;
 }

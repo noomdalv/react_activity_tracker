@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import { handleSuccesfulAuth } from '../../actions';
-import { checkLoginStatus } from '../../actions';
-import Footer from '../nav/Footer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { history } from '../../App';
+import { handleSuccesfulAuth, checkLoginStatus } from '../../actions';
+
+import Footer from '../nav/Footer';
 import styles from './Login.module.css';
 
 class Login extends React.Component {
@@ -19,9 +20,9 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    const { checkLoginStatus } = this.props
+    const { checkLoginStatus } = this.props;
     checkLoginStatus();
-    console.log("mounted login, checkLoginStatus")
+    console.log('mounted login, checkLoginStatus');
   }
 
   handleSubmit(event) {
@@ -39,6 +40,7 @@ class Login extends React.Component {
         if (response.data.logged_in) {
           const { handleSuccesfulAuth } = this.props;
           handleSuccesfulAuth(response.data);
+          history.push('/dashboard');
         }
       })
       .catch(error => {
@@ -74,7 +76,7 @@ class Login extends React.Component {
             onChange={this.handleChange}
             required
           />
-        <button id={styles.loginBtn} type="submit">Login</button>
+          <button id={styles.loginBtn} type="submit">Login</button>
         </form>
         <Footer />
       </div>
