@@ -5,6 +5,13 @@
 
 /* DASHBOARD */
 
+/* STATS */
+#statsInfo {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
 /* RECORD */
 #addRecord input {
 }
@@ -58,7 +65,7 @@
   height: 400px;
   width: 95%;
   margin: auto;
-  background: white;
+  background: #fafafa;
 }
 
 .record {
@@ -66,8 +73,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 10px;
+  padding: 2px;
   list-style-type: none;
   text-align: left;
+  background: #7acbef;
 }
 
 .recordInfo p {
@@ -83,7 +92,7 @@
 .details {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;  
+  grid-template-rows: 1fr 1fr;
   text-align: center;
 }
 
@@ -99,9 +108,11 @@
 
 #menu div {
   flex: 1;
-  border: solid black 1px;
+  border-left: solid white 1px;
+  border-right: solid white 1px;
 }
 
 #menu a {
   text-decoration: none;
+  color: white;
 }

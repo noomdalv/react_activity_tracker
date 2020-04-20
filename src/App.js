@@ -46,6 +46,7 @@ class App extends React.Component {
 
 App.propTypes = {
   status: PropTypes.instanceOf(Object).isRequired,
+  checkLoginStatus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

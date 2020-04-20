@@ -1,7 +1,27 @@
-#login {
-  height: 500px;
+#login, #signup {
+  margin-top: 100px;
+  height: 550px;
 }
 
+/* SIGNUP */
+#signup form {
+  display: flex;
+  flex-direction: column;
+}
+
+#signup input {
+  margin: auto;
+  margin-top: 5px;
+  width: 50%;
+}
+
+#signup button {
+  margin: auto;
+  margin-top: 20px;
+  width: 50%;
+}
+
+/* LOGIN */
 #loginForm {
   width: 40%;
   display: flex;

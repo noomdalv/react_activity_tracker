@@ -3,6 +3,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { handleSuccesfulAuth } from '../../actions';
+import { history } from '../../App';
+import Footer from '../nav/Footer';
+import styles from './Login.module.css';
 
 class Registration extends React.Component {
   constructor(props) {
@@ -35,6 +38,7 @@ class Registration extends React.Component {
         if (response.data.status === 'created') {
           const { handleSuccesfulAuth } = this.props;
           handleSuccesfulAuth(response.data);
+          history.push('/dashboard');
         }
         console.log('registration response =>', response);
       })
@@ -54,7 +58,7 @@ class Registration extends React.Component {
       name, email, password, passwordConfirmation,
     } = this.state;
     return (
-      <div>
+      <div id={styles.signup}>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -94,6 +98,7 @@ class Registration extends React.Component {
 
           <button type="submit">Register</button>
         </form>
+        <Footer />
       </div>
     );
   }

@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { handleSuccesfulAuth, checkLoginStatus } from '../../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { handleSuccesfulAuth, checkLoginStatus } from '../../actions';
 import { history } from '../../App';
 import Footer from '../nav/Footer';
 import styles from './Login.module.css';
@@ -21,7 +21,6 @@ class Login extends React.Component {
   componentDidMount() {
     const { checkLoginStatus } = this.props;
     checkLoginStatus();
-    console.log('mounted login, checkLoginStatus');
   }
 
   handleSubmit(event) {
@@ -85,6 +84,7 @@ class Login extends React.Component {
 
 Login.propTypes = {
   handleSuccesfulAuth: PropTypes.func.isRequired,
+  checkLoginStatus: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

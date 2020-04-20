@@ -1,15 +1,14 @@
 import { LOAD_RECORDS } from '../actions';
 
 const initialState = {
-  records: {}
-}
+  records: {},
+};
 
 const recordsReducer = (state = initialState, action) => {
-  if(action.type === LOAD_RECORDS) {
-    console.log("load records reducer executed", action)
+  if (action.type === LOAD_RECORDS) {
     return action.data;
   }
-  return initialState;
-}
+  return state;
+};
 
 export default recordsReducer;

@@ -6,36 +6,36 @@ import Menu from './Menu';
 import styles from './Dashboard.module.css';
 
 const Dashboard = ({ status }) => {
-  if (status.login === 'LOGGED_IN') {
-    return (
-      <div id={styles.dashboard}>
-        <div id={styles.userDataContainer}>
-          <h1>Dashboard</h1>
-          <p>
-            User:
-            { status.user.data.name }
-          </p>
-          <p>
-            Email:
-            { status.user.data.email }
-          </p>
-        </div>
-
-        <div id={styles.recordContainer}>
-          <Record />
-        </div>
-
-        <Menu />
+  console.log('Dashboard status', status);
+  return (status.login === 'LOGGED_IN') ? (
+    <div id={styles.dashboard}>
+      <div id={styles.userDataContainer}>
+        <h1>Dashboard</h1>
+        <p>
+          User:
+          { status.user.data.name }
+        </p>
+        <p>
+          Email:
+          { status.user.data.email }
+        </p>
       </div>
-    );
-  }
-  return (
-    <h1>You need to login first</h1>
-  );
+
+      <div id={styles.recordContainer}>
+        <Record />
+      </div>
+
+      <Menu />
+    </div>
+  ) : (<h1>You need to login first</h1>);
+};
+
+Dashboard.defaultProps = {
+
 };
 
 Dashboard.propTypes = {
-  status: PropTypes.instanceOf(Object),
+  status: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -5,32 +5,31 @@ import { connect } from 'react-redux';
 import { handleLogout } from '../../actions';
 import styles from './Navbar.module.css';
 
-const Navbar = ({ handleLogout,  status }) => {
-  return (
-    <div id={styles.navbar}>
-      <div id={styles.divlink}>
-        <ul id={styles.linklist}>
-          <li>
-            {status.login === 'LOGGED_IN' ? (
-              <Link to="#">
-                user:
-                {status.user.data.name}
-              </Link>
-            )
-              : <Link to="/signup">Sign Up</Link> }
-          </li>
-          <li>
-            {status.login === 'LOGGED_IN' ? <Link to="/" onClick={() => handleLogout()}>Logout</Link>
-              : <Link to="/">Login</Link> }
-          </li>
-        </ul>
-      </div>
+const Navbar = ({ handleLogout, status }) => (
+  <div id={styles.navbar}>
+    <div id={styles.divlink}>
+      <ul id={styles.linklist}>
+        <li>
+          {status.login === 'LOGGED_IN' ? (
+            <Link to="/dashboard">
+              user:
+              {status.user.data.name}
+            </Link>
+          )
+            : <Link to="/signup">Sign Up</Link> }
+        </li>
+        <li>
+          {status.login === 'LOGGED_IN' ? <Link to="/" onClick={() => handleLogout()}>Logout</Link>
+            : <Link to="/">Login</Link> }
+        </li>
+      </ul>
     </div>
-  );
-};
+  </div>
+);
 
 Navbar.propTypes = {
   status: PropTypes.instanceOf(Object).isRequired,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

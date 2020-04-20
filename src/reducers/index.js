@@ -4,7 +4,7 @@ import recordsReducer from './records_reducer';
 
 const rootReducer = combineReducers({
   status: loginReducer,
-  recordData: recordsReducer
+  recordData: recordsReducer,
 });
 
 export default rootReducer;
