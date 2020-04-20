@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { handleLogout } from '../../actions';
 import styles from './Navbar.module.css';
 
-const Navbar = ({ handleLogout, status }) => {
-  useEffect(() => {
-    console.log('navbar status >', status);
-  });
-
+const Navbar = ({ handleLogout,  status }) => {
   return (
     <div id={styles.navbar}>
       <div id={styles.divlink}>

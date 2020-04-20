@@ -1,5 +1,5 @@
 #dashboard, #stats, #history {
-  height: 500px;
+  height: 550px;
   text-align: center;
 }
 
@@ -10,6 +10,7 @@
 }
 
 .recordDetails {
+  margin-top: 20px;
   display: none;
 }
 
@@ -30,33 +31,65 @@
 
 #trackerGrid div {
   display: grid;
+  margin-top: 5px;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+#trackerGrid button {
+  margin-top: 15px;
 }
 
 .oddGrid {
   background: #fdfdfd;
 }
+
+.success {
+  margin-top: 60px;
+  font-size: 30px;
+  font-weight: bold;
+  display: none;
+}
+
+
 /* HISTORY */
 
 #recordHistory {
-  width: 90%;
+  overflow: auto;
+  height: 400px;
+  width: 95%;
   margin: auto;
   background: white;
 }
 
-#recordHistory ul {
-  padding-bottom: 30px;
+.record {
+  height: max-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 10px;
+  list-style-type: none;
+  text-align: left;
 }
 
-.record {
-  text-align: left;
-  list-style-type: none;
+.recordInfo p {
+  margin: 0;
+  padding: 0;
+}
+
+.recordDescription {
+  margin-top: 5px;
+  word-break:break-all
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;  
+  text-align: center;
 }
 
 /* MENU */
 
 #menu {
-  height: max-content;
   width: 100%;
   position: absolute;
   bottom: 0;

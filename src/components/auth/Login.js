@@ -1,10 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import { handleSuccesfulAuth, checkLoginStatus } from '../../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { history } from '../../App';
-import { handleSuccesfulAuth, checkLoginStatus } from '../../actions';
-
 import Footer from '../nav/Footer';
 import styles from './Login.module.css';
 

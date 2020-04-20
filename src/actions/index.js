@@ -3,6 +3,7 @@ import { history } from '../App';
 
 export const NOT_LOGGED_IN = 'NOT_LOGGED_IN';
 export const LOGGED_IN = 'LOGGED_IN';
+export const LOAD_RECORDS = 'LOAD_RECORDS';
 
 export const notLoggedIn = () => ({
   type: NOT_LOGGED_IN,
@@ -14,9 +15,27 @@ export const loggedIn = data => ({
   data,
 });
 
+export const loadRecords = data => ({
+  type: LOAD_RECORDS,
+  data
+})
+
+export const fetchRecords = data => (dispatch, getState) => {
+  axios.get("http://localhost:3001/records", { withCredentials: true })
+  .then(response => {
+    console.log("fetchRecords action response", response)
+    if (response.status === 200) {
+      dispatch(loadRecords(response.data))
+      console.log("fetchRecords action getState", getState())
+    }
+  })
+  .catch(error => {
+    console.error('Logout error', error);
+  });
+}
+
 export const handleSuccesfulAuth = data => dispatch => {
   dispatch(loggedIn(data));
-  history.push('/dashboard');
 };
 
 export const handleLogout = () => dispatch => {
@@ -31,12 +50,11 @@ export const handleLogout = () => dispatch => {
     });
 };
 
-
 export const checkLoginStatus = () => (dispatch, getState) => {
   axios.get('http://localhost:3001/logged_in', { withCredentials: true })
     .then(response => {
       console.log('checkLoginStatus response >', response);
-      console.log('checkLoginStatus getState >', getState());
+      console.log("checkLoginStatus getState", getState())
       if (response.data.logged_in && getState().status.login === 'NOT_LOGGED_IN') {
         console.log('logged in');
         dispatch(loggedIn(response.data));

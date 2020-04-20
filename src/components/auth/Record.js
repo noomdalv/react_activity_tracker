@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { handleSuccesfulAuth, checkLoginStatus } from '../../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from '../nav/Dashboard.module.css';
@@ -10,10 +11,10 @@ class Record extends React.Component {
     this.state = {
       day: new Date().toLocaleDateString('en-CA'),
       description: '',
-      sleep: '',
-      work: '',
-      exercise: '',
-      leisure: '',
+      sleep: 0,
+      work: 0,
+      exercise: 0,
+      leisure: 0,
     };
     this.handleSubmitRecord = this.handleSubmitRecord.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -28,7 +29,6 @@ class Record extends React.Component {
   }
 
   handleTimeChange(event) {
-    console.log(event.target.value);
     const hours = document.getElementById(`${event.target.name}hours`).value;
     const mins = document.getElementById(`${event.target.name}mins`).value;
     this.setState({
@@ -53,8 +53,16 @@ class Record extends React.Component {
     },
     { withCredentials: true })
       .then(response => {
-        if (response.data.status === 'created') {
+        if (response.data.status === 'record_created') {
+          this.setState({
+            description: ""
+          });
+          document.getElementById('recordForm').reset();
+          document.getElementById('recordDetails').style.display = 'none';
+          document.getElementById('sucessMsg').style.display = 'block';
           console.log('record created >', response.data);
+          handleSuccesfulAuth(response.data)
+          this.props.checkLoginStatus();
         }
       })
       .catch(error => {
@@ -63,11 +71,11 @@ class Record extends React.Component {
   }
 
   loadRecordDetails() {
-    const z = document.getElementById('recordDetails');
-    z.style.display = 'block';
+    document.getElementById('recordDetails').style.display = 'block';
+    document.getElementById('sucessMsg').style.display = 'none';
   }
 
-  render() {    
+  render() {
     const { day, description } = this.state;
     return (
       <div id={styles.addRecord}>
@@ -81,6 +89,7 @@ class Record extends React.Component {
             name="description"
             placeholder="Description..."
             value={description}
+            maxlength="40"
             onChange={this.handleChange}
           />
           <br />
@@ -96,7 +105,7 @@ class Record extends React.Component {
               <div className={styles.oddGrid}>
                 <span>Sleep</span>
                 <input
-                  type="number"
+                  type="number" defaultValue={0}
                   id="sleephours"
                   min="0"
                   max="24"
@@ -104,7 +113,7 @@ class Record extends React.Component {
                   onChange={this.handleTimeChange}
                 />
                 <input
-                  type="number"
+                  type="number" defaultValue={0}
                   id="sleepmins"
                   min="0"
                   max="60"
@@ -116,7 +125,7 @@ class Record extends React.Component {
               <div>
                 <span>Work/Study</span>
                 <input
-                  type="number"
+                  type="number" defaultValue={0}
                   id="workhours"
                   min="0"
                   max="24"
@@ -124,7 +133,7 @@ class Record extends React.Component {
                   onChange={this.handleTimeChange}
                 />
                 <input
-                  type="number"
+                  type="number" defaultValue={0}
                   id="workmins"
                   min="0"
                   max="60"
@@ -136,7 +145,7 @@ class Record extends React.Component {
               <div className={styles.oddGrid}>
                 <span>Exercise</span>
                 <input
-                  type="number"
+                  type="number" defaultValue={0}
                   id="exercisehours"
                   min="0"
                   max="24"
@@ -144,7 +153,7 @@ class Record extends React.Component {
                   onChange={this.handleTimeChange}
                 />
                 <input
-                  type="number"
+                  type="number" defaultValue={0}
                   id="exercisemins"
                   min="0"
                   max="60"
@@ -156,7 +165,7 @@ class Record extends React.Component {
               <div>
                 <span>Leisure/Relax</span>
                 <input
-                  type="number"
+                  type="number" defaultValue={0}
                   id="leisurehours"
                   min="0"
                   max="24"
@@ -164,7 +173,7 @@ class Record extends React.Component {
                   onChange={this.handleTimeChange}
                 />
                 <input
-                  type="number"
+                  type="number" defaultValue={0}
                   id="leisuremins"
                   min="0"
                   max="60"
@@ -184,14 +193,14 @@ class Record extends React.Component {
             </div>
           </div>
         </form>
+        <div id="sucessMsg" className={styles.success}>ENTRY SAVED!</div>
       </div>
     );
   }
 }
 
 Record.propTypes = {
-  records: PropTypes.instanceOf(Object),
-  recordDetails: PropTypes.instanceOf(Object),
+  handleSuccesfulAuth: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -199,7 +208,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  handleSuccesfulAuth: data => dispatch(handleSuccesfulAuth(data)),
+  checkLoginStatus: () => dispatch(checkLoginStatus()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Record);
