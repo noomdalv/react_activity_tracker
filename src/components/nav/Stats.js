@@ -23,37 +23,37 @@ const Stats = ({ status, fetchRecords, recordData }) => {
         { recordData.records.length > 0 ? (
           <div id={styles.statsInfo}>
             <p>
-              Account created on:
+              <b>Account created on:</b>
               <br />
               {' '}
               { status.user.data.created_at.slice(0, 10) }
             </p>
             <p>
-              Total days tracked:
+              <b>Total days tracked:</b>
               <br />
               {' '}
               { recordData.records.length }
             </p>
             <p>
-              Total sleep hours:
+              <b>Total sleep hours:</b>
               <br />
               {' '}
               { getStats('sleep') }
             </p>
             <p>
-              Total work hours:
+              <b>Total work hours:</b>
               <br />
               {' '}
               { getStats('work') }
             </p>
             <p>
-              Total exercise hours:
+              <b>Total exercise hours:</b>
               <br />
               {' '}
               { getStats('exercise') }
             </p>
             <p>
-              Total leisure hours:
+              <b>Total leisure hours:</b>
               <br />
               {' '}
               { getStats('leisure') }

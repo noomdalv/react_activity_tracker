@@ -7,14 +7,14 @@ import styles from './Dashboard.module.css';
 
 const Dashboard = ({ status }) => ((status.login === 'LOGGED_IN') ? (
   <div id={styles.dashboard}>
+    <h1>Dashboard</h1>
     <div id={styles.userDataContainer}>
-      <h1>Dashboard</h1>
       <p>
-        User:
+        <b>User: </b>
         { status.user.data.name }
       </p>
       <p>
-        Email:
+        <b>Email: </b>
         { status.user.data.email }
       </p>
     </div>

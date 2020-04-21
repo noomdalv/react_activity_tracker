@@ -77,7 +77,7 @@ class Record extends React.Component {
       <div id={styles.addRecord}>
 
         <form onSubmit={this.handleSubmitRecord} id="recordForm">
-          <h3>Add a new entry</h3>
+          <h4>ADD A NEW ENTRY</h4>
           <span>Day:</span>
           <input type="date" name="day" value={day} onChange={this.handleChange} />
           <br />

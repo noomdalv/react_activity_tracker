@@ -4,16 +4,26 @@
 }
 
 /* DASHBOARD */
+#userDataContainer {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+}
 
 /* STATS */
 #statsInfo {
   width: 90%;
   margin: auto;
+  padding: 10px;
   text-align: center;
+  background: #fdfdfd;
 }
 
 /* RECORD */
-#addRecord input {
+#addRecord {
+  width: 80%;
+  margin: auto;
+  background: #fdfdfd
 }
 
 .recordDetails {
@@ -76,7 +86,7 @@
   padding: 2px;
   list-style-type: none;
   text-align: left;
-  background: #7acbef;
+  background: #dddddd;
 }
 
 .recordInfo p {

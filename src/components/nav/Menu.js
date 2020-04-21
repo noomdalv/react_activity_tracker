@@ -5,13 +5,13 @@ import styles from './Dashboard.module.css';
 const Menu = () => (
   <div id={styles.menu}>
     <div className="menuItem">
-      <Link to="/dashboard"><h5>Dashboard</h5></Link>
+      <Link to="/dashboard"><h3>Dashboard</h3></Link>
     </div>
     <div className="menuItem">
-      <Link to="/stats"><h5>Stats</h5></Link>
+      <Link to="/stats"><h3>Stats</h3></Link>
     </div>
     <div className="menuItem">
-      <Link to="/history"><h5>History</h5></Link>
+      <Link to="/history"><h3>History</h3></Link>
     </div>
   </div>
 );

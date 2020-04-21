@@ -15,7 +15,6 @@ const RecordHistory = ({ status, fetchRecords, recordData }) => {
       <div id={styles.history}>
         <h1>History</h1>
         <div id={styles.recordHistory}>
-          <h3>Records</h3>
           <div>
             { recordData.records.length > 0 ? recordData.records.map(record => {
               const details = recordData.record_details.filter(rec => rec.record_id === record.id);
