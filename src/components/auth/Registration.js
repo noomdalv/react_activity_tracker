@@ -25,7 +25,7 @@ class Registration extends React.Component {
     const {
       name, email, password, passwordConfirmation,
     } = this.state;
-    axios.post('http://localhost:3001/registrations', {
+    axios.post('https://trackerapi-vls.herokuapp.com/registrations', {
       user: {
         name,
         email,
