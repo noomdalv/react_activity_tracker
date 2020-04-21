@@ -16,7 +16,7 @@
 
 ## API Link
 
-[Live Link](http://reactactivitytracker.herokuapp.com/)
+[Live Link](https://reactactivitytracker.herokuapp.com/)
 
 
 ## Getting Started
