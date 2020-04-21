@@ -8,8 +8,7 @@ import styles from './Dashboard.module.css';
 const RecordHistory = ({ status, fetchRecords, recordData }) => {
   useEffect(() => {
     fetchRecords();
-    console.log("recordHistory status", status)
-  }, [fetchRecords, status]);
+  }, [fetchRecords]);
 
   if (status.login === 'LOGGED_IN') {
     return (

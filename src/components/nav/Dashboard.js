@@ -7,7 +7,6 @@ import styles from './Dashboard.module.css';
 
 const Dashboard = ({ status }) => ((status.login === 'LOGGED_IN') ? (
   <div id={styles.dashboard}>
-    console.log("dashboard status >", status)
     <h1>Dashboard</h1>
     <div id={styles.userDataContainer}>
       <p>
