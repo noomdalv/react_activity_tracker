@@ -29,7 +29,7 @@ export const fetchRecords = () => dispatch => {
       }
     })
     .catch(error => {
-      console.error('Logout error', error);
+      console.error('FetchRecords error', error);
     });
 };
 
@@ -60,6 +60,6 @@ export const checkLoginStatus = () => (dispatch, getState) => {
       }
     })
     .catch(error => {
-      console.error('logged in error =>', error);
+      console.error('checkLoginStatus in error =>', error);
     });
 };

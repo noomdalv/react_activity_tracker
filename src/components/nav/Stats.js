@@ -8,7 +8,7 @@ import styles from './Dashboard.module.css';
 const Stats = ({ status, fetchRecords, recordData }) => {
   useEffect(() => {
     fetchRecords();
-  }, []);
+  }, [fetchRecords]);
 
   const getStats = activity => {
     let time = 0;
