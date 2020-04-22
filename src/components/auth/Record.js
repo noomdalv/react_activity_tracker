@@ -41,7 +41,7 @@ class Record extends React.Component {
       day, description, sleep, work, exercise, leisure,
     } = this.state;
     const { handleSuccesfulAuth } = this.props;
-    axios.post('https://activitytrackerapi.herokuapp.com/records', {
+    axios.post('http://localhost:3001/records', {
       record: {
         day,
         description,

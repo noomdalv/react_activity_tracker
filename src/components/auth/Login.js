@@ -26,7 +26,7 @@ class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { email, password } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/sessions', {
+    axios.post('http://localhost:3001/sessions', {
       user: {
         email,
         password,
