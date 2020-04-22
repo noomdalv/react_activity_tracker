@@ -7,8 +7,8 @@ import styles from './Dashboard.module.css';
 
 const RecordHistory = ({ status, fetchRecords, recordData }) => {
   useEffect(() => {
-    fetchRecords();
-  }, [fetchRecords]);
+    fetchRecords(status.user.data.id);
+  }, [fetchRecords, status.user.data.id]);
 
   if (status.login === 'LOGGED_IN') {
     return (
@@ -80,7 +80,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchRecords: () => dispatch(fetchRecords()),
+  fetchRecords: id => dispatch(fetchRecords(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecordHistory);

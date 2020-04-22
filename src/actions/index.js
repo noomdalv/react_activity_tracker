@@ -20,8 +20,8 @@ export const loadRecords = data => ({
   data,
 });
 
-export const fetchRecords = () => dispatch => {
-  axios.get('https://activitytrackerapi.herokuapp.com/records', { withCredentials: true })
+export const fetchRecords = id => dispatch => {
+  axios.get(`https://activitytrackerapi.herokuapp.com/?id=${id}`)
     .then(response => {
       console.log('fetchrecords response', response);
       if (response.status === 200) {
@@ -38,7 +38,7 @@ export const handleSuccesfulAuth = data => dispatch => {
 };
 
 export const handleLogout = () => dispatch => {
-  axios.delete('https://activitytrackerapi.herokuapp.com/logout', { withCredentials: true })
+  axios.delete('https://activitytrackerapi.herokuapp.com/logout')
     .then(response => {
       console.log('handleLogout response', response);
       dispatch(notLoggedIn());
@@ -46,20 +46,5 @@ export const handleLogout = () => dispatch => {
     })
     .catch(error => {
       console.error('Logout error', error);
-    });
-};
-
-export const checkLoginStatus = () => (dispatch, getState) => {
-  axios.get('https://activitytrackerapi.herokuapp.com/logged_in', { withCredentials: true })
-    .then(response => {
-      console.log('checkLoginStatus response', response);
-      if (response.data.logged_in && getState().status.login === 'NOT_LOGGED_IN') {
-        dispatch(loggedIn(response.data));
-      } else if (!response.data.logged_in && getState().status.login === 'LOGGED_IN') {
-        dispatch(notLoggedIn());
-      }
-    })
-    .catch(error => {
-      console.error('checkLoginStatus in error =>', error);
     });
 };

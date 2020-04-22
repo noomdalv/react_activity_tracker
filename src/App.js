@@ -1,9 +1,6 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { checkLoginStatus } from './actions';
 import Navbar from './components/nav/Navbar';
 import Home from './components/nav/Home';
 import Login from './components/auth/Login';
@@ -15,38 +12,20 @@ import styles from './App.module.css';
 
 export const history = createBrowserHistory();
 
-class App extends React.Component {
-  componentDidMount() {
-    const { checkLoginStatus } = this.props;
-    checkLoginStatus();
-  }
+const App = () => (
+  <Router history={history}>
+    <div id={styles.app}>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signup" component={Registration} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/stats" component={Stats} />
+        <Route exact path="/history" component={RecordHistory} />
+      </Switch>
+    </div>
+  </Router>
+);
 
-  render() {
-    return (
-      <Router history={history}>
-        <div id={styles.app}>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signup" component={Registration} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/stats" component={Stats} />
-            <Route exact path="/history" component={RecordHistory} />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
-}
-
-App.propTypes = {
-  checkLoginStatus: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = dispatch => ({
-  checkLoginStatus: () => dispatch(checkLoginStatus()),
-});
-
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { handleSuccesfulAuth, checkLoginStatus } from '../../actions';
+import { handleSuccesfulAuth } from '../../actions';
 import { history } from '../../App';
 import Footer from '../nav/Footer';
 import styles from './Login.module.css';
@@ -18,11 +18,6 @@ class Login extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    const { checkLoginStatus } = this.props;
-    checkLoginStatus();
-  }
-
   handleSubmit(event) {
     event.preventDefault();
     const { email, password } = this.state;
@@ -31,9 +26,9 @@ class Login extends React.Component {
         email,
         password,
       },
-    },
-    { withCredentials: true })
+    })
       .then(response => {
+        console.log('login response:', response);
         if (response.data.logged_in) {
           const { handleSuccesfulAuth } = this.props;
           handleSuccesfulAuth(response.data);
@@ -83,12 +78,10 @@ class Login extends React.Component {
 
 Login.propTypes = {
   handleSuccesfulAuth: PropTypes.func.isRequired,
-  checkLoginStatus: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   handleSuccesfulAuth: data => dispatch(handleSuccesfulAuth(data)),
-  checkLoginStatus: () => dispatch(checkLoginStatus()),
 });
 
 export default connect(null, mapDispatchToProps)(Login);

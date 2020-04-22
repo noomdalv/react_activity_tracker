@@ -7,8 +7,8 @@ import styles from './Dashboard.module.css';
 
 const Stats = ({ status, fetchRecords, recordData }) => {
   useEffect(() => {
-    fetchRecords();
-  }, [fetchRecords]);
+    fetchRecords(status.user.data.id);
+  }, [fetchRecords, status.user.data.id]);
 
   const getStats = activity => {
     let time = 0;
@@ -82,7 +82,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchRecords: () => dispatch(fetchRecords()),
+  fetchRecords: id => dispatch(fetchRecords(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Stats);

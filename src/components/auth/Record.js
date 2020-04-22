@@ -22,43 +22,32 @@ class Record extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleTimeChange(event) {
     const hours = document.getElementById(`${event.target.name}hours`).value;
     const mins = document.getElementById(`${event.target.name}mins`).value;
-    this.setState({
-      [event.target.name]: `${hours}.${mins}`,
-    });
+    this.setState({ [event.target.name]: `${hours}.${mins}` });
   }
 
   handleSubmitRecord(event) {
     event.preventDefault();
+    const { status, handleSuccesfulAuth } = this.props;
     const {
       day, description, sleep, work, exercise, leisure,
     } = this.state;
-    const { handleSuccesfulAuth } = this.props;
     axios.post('https://activitytrackerapi.herokuapp.com/records', {
-      record: {
-        day,
-        description,
-      },
+      user: { id: status.user.data.id },
+      record: { day, description },
       details: {
-        sleep,
-        work,
-        exercise,
-        leisure,
+        sleep, work, exercise, leisure,
       },
-    },
-    { withCredentials: true })
+    })
       .then(response => {
+        console.log('submit record response', response);
         if (response.data.status === 'record_created') {
-          this.setState({
-            description: '',
-          });
+          this.setState({ description: '' });
           document.getElementById('recordForm').reset();
           document.getElementById('recordDetails').style.display = 'none';
           document.getElementById('sucessMsg').style.display = 'block';
@@ -215,6 +204,7 @@ class Record extends React.Component {
 }
 
 Record.propTypes = {
+  status: PropTypes.instanceOf(Object).isRequired,
   handleSuccesfulAuth: PropTypes.func.isRequired,
 };
 
