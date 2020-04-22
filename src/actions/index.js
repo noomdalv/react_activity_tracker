@@ -21,7 +21,7 @@ export const loadRecords = data => ({
 });
 
 export const fetchRecords = () => dispatch => {
-  axios.get('http://localhost:3001/records', { withCredentials: true })
+  axios.get('https://activitytrackerapi.herokuapp.com/records', { withCredentials: true })
     .then(response => {
       console.log('fetchrecords response', response);
       if (response.status === 200) {
@@ -38,7 +38,7 @@ export const handleSuccesfulAuth = data => dispatch => {
 };
 
 export const handleLogout = () => dispatch => {
-  axios.delete('http://localhost:3001/logout', { withCredentials: true })
+  axios.delete('https://activitytrackerapi.herokuapp.com/logout', { withCredentials: true })
     .then(response => {
       console.log('handleLogout response', response);
       dispatch(notLoggedIn());
@@ -50,7 +50,7 @@ export const handleLogout = () => dispatch => {
 };
 
 export const checkLoginStatus = () => (dispatch, getState) => {
-  axios.get('http://localhost:3001/logged_in', { withCredentials: true })
+  axios.get('https://activitytrackerapi.herokuapp.com/logged_in', { withCredentials: true })
     .then(response => {
       console.log('checkLoginStatus response', response);
       if (response.data.logged_in && getState().status.login === 'NOT_LOGGED_IN') {
