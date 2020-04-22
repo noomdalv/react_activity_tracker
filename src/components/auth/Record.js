@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { handleSuccesfulAuth, checkLoginStatus } from '../../actions';
+import { handleSuccesfulAuth } from '../../actions';
 import styles from '../nav/Dashboard.module.css';
 
 class Record extends React.Component {
@@ -40,7 +40,7 @@ class Record extends React.Component {
     const {
       day, description, sleep, work, exercise, leisure,
     } = this.state;
-    const { checkLoginStatus, handleSuccesfulAuth } = this.props;
+    const { handleSuccesfulAuth } = this.props;
     axios.post('https://activitytrackerapi.herokuapp.com/records', {
       record: {
         day,
@@ -63,7 +63,6 @@ class Record extends React.Component {
           document.getElementById('recordDetails').style.display = 'none';
           document.getElementById('sucessMsg').style.display = 'block';
           handleSuccesfulAuth(response.data);
-          checkLoginStatus();
         }
       })
       .catch(error => {
@@ -217,7 +216,6 @@ class Record extends React.Component {
 
 Record.propTypes = {
   handleSuccesfulAuth: PropTypes.func.isRequired,
-  checkLoginStatus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -226,7 +224,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleSuccesfulAuth: data => dispatch(handleSuccesfulAuth(data)),
-  checkLoginStatus: () => dispatch(checkLoginStatus()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Record);
