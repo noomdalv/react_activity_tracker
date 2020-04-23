@@ -22,7 +22,7 @@ class Login extends React.Component {
     event.preventDefault();
     document.getElementById("alertmsg").style.visibility = "hidden";
     const { email, password } = this.state;
-    axios.post('http://localhost:3001/sessions', {
+    axios.post('https://activitytrackerapi.herokuapp.com/sessions', {
       user: {
         email,
         password,
