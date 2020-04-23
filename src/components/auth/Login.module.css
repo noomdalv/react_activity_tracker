@@ -1,0 +1,83 @@
+.login, .signup {
+  margin-top: 50px;
+  height: 550px;
+}
+
+/* SIGNUP */
+.signup form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup input {
+  margin: auto;
+  margin-top: 5px;
+  width: 50%;
+}
+
+.signup button {
+  margin: auto;
+  margin-top: 20px;
+  width: 50%;
+}
+
+/* LOGIN */
+.loginForm {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.loginForm input {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.loginBtn {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.footer {
+  height: max-content;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  align-items: flex-end;
+  color: white;
+  background: #41B5E9;
+}
+
+.footer h4 {
+  width: 50%;
+  margin: 0 0 0 15px;
+  padding: 0;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.footer h3 {
+  width: 50%;
+  margin: 0 5px 0 0;
+  padding: 0;
+  text-align: right;
+  font-size: 0.8em;
+}
+
+.alertmsg {
+  visibility: hidden;
+  text-align: center;
+  color: red;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 640px) {
+  .footer h4 {
+    font-size: 1.2em;
+  }
+}

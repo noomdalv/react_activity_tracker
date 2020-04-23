@@ -1,80 +1,31 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { checkLoginStatus, loggedIn, notLoggedIn } from './actions';
-import Home from './components/Home';
-import Dashboard from './components/Dashboard';
+import { Router, Switch, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import Navbar from './components/nav/Navbar';
+import Home from './components/nav/Home';
+import Login from './components/auth/Login';
+import Registration from './components/auth/Registration';
+import Dashboard from './components/nav/Dashboard';
+import Stats from './components/nav/Stats';
+import RecordHistory from './components/nav/RecordHistory';
+import styles from './App.module.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-  }
+export const history = createBrowserHistory();
 
-  componentDidMount() {
-    const { checkLoginStatus } = this.props;
-    checkLoginStatus();
-  }
+const App = () => (
+  <Router history={history}>
+    <div className={styles.app}>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signup" component={Registration} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/stats" component={Stats} />
+        <Route exact path="/history" component={RecordHistory} />
+      </Switch>
+    </div>
+  </Router>
+);
 
-  handleLogin(data) {
-    const { loggedIn } = this.props;
-    loggedIn(data);
-  }
-
-  handleLogout() {
-    const { notLoggedIn } = this.props;
-    notLoggedIn();
-  }
-
-  render() {
-    const { status } = this.props;
-    return (
-      <div className="App">
-        <Router>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <Home
-                  {...props}
-                  handleLogin={this.handleLogin}
-                  handleLogout={this.handleLogout}
-                  status={status}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/dashboard"
-              render={props => (
-                <Dashboard {...props} status={status} />)}
-            />
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
-}
-
-App.propTypes = {
-  status: PropTypes.instanceOf(Object).isRequired,
-  checkLoginStatus: PropTypes.func.isRequired,
-  loggedIn: PropTypes.func.isRequired,
-  notLoggedIn: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  status: state.status,
-});
-
-const mapDispatchToProps = dispatch => ({
-  checkLoginStatus: () => dispatch(checkLoginStatus()),
-  loggedIn: data => dispatch(loggedIn(data)),
-  notLoggedIn: () => dispatch(notLoggedIn()),
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

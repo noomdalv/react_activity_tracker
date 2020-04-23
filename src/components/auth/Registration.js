@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { handleSuccesfulAuth } from '../../actions';
+import { history } from '../../App';
+import Footer from '../nav/Footer';
+import styles from './Login.module.css';
 
 class Registration extends React.Component {
   constructor(props) {
@@ -20,25 +25,21 @@ class Registration extends React.Component {
     const {
       name, email, password, passwordConfirmation,
     } = this.state;
-    axios.post('http://localhost:3001/registrations', {
+    axios.post('https://activitytrackerapi.herokuapp.com/registrations', {
       user: {
         name,
         email,
         password,
         passwordConfirmation,
       },
-    },
-    { withCredentials: true })
+    }, { withCredentials: true })
       .then(response => {
         if (response.data.status === 'created') {
           const { handleSuccesfulAuth } = this.props;
           handleSuccesfulAuth(response.data);
+          history.push('/dashboard');
         }
-        console.log('registration response =>', response);
       })
-      .catch(error => {
-        console.error('Registration error =>', error);
-      });
   }
 
   handleChange(event) {
@@ -52,7 +53,7 @@ class Registration extends React.Component {
       name, email, password, passwordConfirmation,
     } = this.state;
     return (
-      <div>
+      <div className={styles.signup}>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -83,7 +84,7 @@ class Registration extends React.Component {
 
           <input
             type="password"
-            name="password_confirmation"
+            name="passwordConfirmation"
             placeholder="Password confirmation"
             value={passwordConfirmation}
             onChange={this.handleChange}
@@ -92,6 +93,7 @@ class Registration extends React.Component {
 
           <button type="submit">Register</button>
         </form>
+        <Footer />
       </div>
     );
   }
@@ -101,4 +103,9 @@ Registration.propTypes = {
   handleSuccesfulAuth: PropTypes.func.isRequired,
 };
 
-export default Registration;
+const mapDispatchToProps = dispatch => ({
+  handleSuccesfulAuth: data => dispatch(handleSuccesfulAuth(data)),
+});
+
+
+export default connect(null, mapDispatchToProps)(Registration);

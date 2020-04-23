@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { handleSuccesfulAuth } from '../../actions';
+import { history } from '../../App';
+import Footer from '../nav/Footer';
+import styles from './Login.module.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -15,24 +20,22 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    document.getElementById('alertmsg').style.visibility = 'hidden';
     const { email, password } = this.state;
-    axios.post('http://localhost:3001/sessions', {
+    axios.post('https://activitytrackerapi.herokuapp.com/sessions', {
       user: {
         email,
         password,
       },
-    },
-    { withCredentials: true })
+    }, { withCredentials: true })
       .then(response => {
-        console.log('handleSubmit response >', response);
         if (response.data.logged_in) {
           const { handleSuccesfulAuth } = this.props;
-          console.log('handling success auth');
           handleSuccesfulAuth(response.data);
+          history.push('/dashboard');
+        } else {
+          document.getElementById('alertmsg').style.visibility = 'visible';
         }
-      })
-      .catch(error => {
-        console.error('Login error =>', error);
       });
   }
 
@@ -45,8 +48,9 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className={styles.login}>
+        <div id="alertmsg" className={styles.alertmsg}>VERIFY YOUR INFORMATION</div>
+        <form className={styles.loginForm} onSubmit={this.handleSubmit}>
           <input
             type="email"
             name="email"
@@ -64,8 +68,9 @@ class Login extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <button type="submit">Login</button>
+          <button className={styles.loginBtn} type="submit">Login</button>
         </form>
+        <Footer />
       </div>
     );
   }
@@ -75,4 +80,8 @@ Login.propTypes = {
   handleSuccesfulAuth: PropTypes.func.isRequired,
 };
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  handleSuccesfulAuth: data => dispatch(handleSuccesfulAuth(data)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
