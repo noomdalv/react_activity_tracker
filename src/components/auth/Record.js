@@ -37,13 +37,13 @@ class Record extends React.Component {
     const {
       day, description, sleep, work, exercise, leisure,
     } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/records', {
+    axios.post('http://localhost:3001/records', {
       user: { id: status.user.data.id },
       record: { day, description },
       details: {
         sleep, work, exercise, leisure,
       },
-    })
+    }, { withCredentials: true })
       .then(response => {
         console.log('submit record response', response);
         if (response.data.status === 'record_created') {
@@ -92,7 +92,7 @@ class Record extends React.Component {
 
           <div id="recordDetails" className={styles.recordDetails}>
             <h3>Time Tracker</h3>
-            <div id={styles.trackerGrid}>
+            <div className={styles.trackerGrid}>
               <div>
                 <h6>Activity</h6>
                 <h6>Hours</h6>

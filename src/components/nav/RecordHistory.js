@@ -12,9 +12,9 @@ const RecordHistory = ({ status, fetchRecords, recordData }) => {
 
   if (status.login === 'LOGGED_IN') {
     return (
-      <div id={styles.history}>
+      <div className={styles.history}>
         <h1>History</h1>
-        <div id={styles.recordHistory}>
+        <div className={styles.recordHistory}>
           <div>
             { recordData.records.length > 0 ? recordData.records.map(record => {
               const details = recordData.record_details.filter(rec => rec.record_id === record.id);

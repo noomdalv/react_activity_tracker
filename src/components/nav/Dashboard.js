@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Record from '../auth/Record';
+import Footer from '../nav/Footer';
 import Menu from './Menu';
 import styles from './Dashboard.module.css';
 
-const Dashboard = ({ status }) => ((status.login === 'LOGGED_IN') ? (
-  <div id={styles.dashboard}>
-    <h1>Dashboard</h1>
-    <div id={styles.userDataContainer}>
+const Dashboard = ({ status }) => (
+  <div className={styles.dashboard}>
+    { status.login === 'LOGGED_IN' ? (
+    <div>
+      <h1>Dashboard</h1>
+    <div className={styles.userDataContainer}>
       <p>
         <b>User: </b>
         { status.user.data.name }
@@ -22,14 +25,15 @@ const Dashboard = ({ status }) => ((status.login === 'LOGGED_IN') ? (
     <div id={styles.recordContainer}>
       <Record />
     </div>
-
     <Menu />
-  </div>
-) : (<h1>You need to login first</h1>));
+  </div> ) : (
+    <div>
+      <h1 style={{paddingTop: 200}}>You need to login first</h1>
+      <Footer />
+    </div> ) }
+</div>
 
-Dashboard.defaultProps = {
-
-};
+)
 
 Dashboard.propTypes = {
   status: PropTypes.instanceOf(Object).isRequired,

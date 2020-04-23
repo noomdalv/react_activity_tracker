@@ -1,10 +1,10 @@
-#dashboard, #stats, #history {
+.dashboard, .stats, .history {
   height: 550px;
   text-align: center;
 }
 
 /* DASHBOARD */
-#userDataContainer {
+.userDataContainer {
   width: 50%;
   margin: auto;
   text-align: left;
@@ -46,13 +46,13 @@
   margin: auto;
 }
 
-#trackerGrid div {
+.trackerGrid div {
   display: grid;
   margin-top: 5px;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-#trackerGrid button {
+.trackerGrid button {
   margin-top: 15px;
 }
 
@@ -70,7 +70,7 @@
 
 /* HISTORY */
 
-#recordHistory {
+.recordHistory {
   overflow: auto;
   height: 400px;
   width: 95%;
@@ -108,7 +108,7 @@
 
 /* MENU */
 
-#menu {
+.menu {
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -116,13 +116,13 @@
   background: #41B5E9;
 }
 
-#menu div {
+.menu div {
   flex: 1;
   border-left: solid white 1px;
   border-right: solid white 1px;
 }
 
-#menu a {
+.menu a {
   text-decoration: none;
   color: white;
 }

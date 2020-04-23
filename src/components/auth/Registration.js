@@ -25,14 +25,14 @@ class Registration extends React.Component {
     const {
       name, email, password, passwordConfirmation,
     } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/registrations', {
+    axios.post('http://localhost:3001/registrations', {
       user: {
         name,
         email,
         password,
         passwordConfirmation,
       },
-    })
+    }, { withCredentials: true })
       .then(response => {
         if (response.data.status === 'created') {
           const { handleSuccesfulAuth } = this.props;
@@ -56,7 +56,7 @@ class Registration extends React.Component {
       name, email, password, passwordConfirmation,
     } = this.state;
     return (
-      <div id={styles.signup}>
+      <div className={styles.signup}>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"

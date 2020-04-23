@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 
 const Menu = () => (
-  <div id={styles.menu}>
+  <div className={styles.menu}>
     <div className="menuItem">
       <Link to="/dashboard"><h3>Dashboard</h3></Link>
     </div>

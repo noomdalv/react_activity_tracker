@@ -20,19 +20,23 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    document.getElementById("alertmsg").style.visibility = "hidden";
     const { email, password } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/sessions', {
+    axios.post('http://localhost:3001/sessions', {
       user: {
         email,
         password,
       },
-    })
+    }, { withCredentials: true })
       .then(response => {
         console.log('login response:', response);
         if (response.data.logged_in) {
           const { handleSuccesfulAuth } = this.props;
           handleSuccesfulAuth(response.data);
           history.push('/dashboard');
+        } else {
+          console.log("user error, alert")
+          document.getElementById("alertmsg").style.visibility = "visible";
         }
       })
       .catch(error => {
@@ -49,8 +53,9 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div id={styles.login}>
-        <form id={styles.loginForm} onSubmit={this.handleSubmit}>
+      <div className={styles.login}>
+        <div id="alertmsg" className={styles.alertmsg}>VERIFY YOUR INFORMATION</div>
+        <form className={styles.loginForm} onSubmit={this.handleSubmit}>
           <input
             type="email"
             name="email"
@@ -68,7 +73,7 @@ class Login extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <button id={styles.loginBtn} type="submit">Login</button>
+          <button className={styles.loginBtn} type="submit">Login</button>
         </form>
         <Footer />
       </div>
