@@ -21,12 +21,30 @@
 
 ## Getting Started
 
-To get a local copy up and running go to the location you'd like to add the project and then run the command below
+To get a local copy up and running go to the location you'd like to add the project and then run the commands below
 
 ### Setup
 
 ```console
 git clone https://github.com/noomdalv/rails_api.git
+```
+
+```console
+cd rails_api
+```
+
+```console
+bundle install
+```
+
+### DB and Server start
+
+```console
+rails db:create && rails db:migrate
+```
+
+```console
+rails server
 ```
 
 ## Author
@@ -42,5 +60,5 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](lic.url) licensed.
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
 ​
