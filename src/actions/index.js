@@ -21,15 +21,11 @@ export const loadRecords = data => ({
 });
 
 export const fetchRecords = id => dispatch => {
-  axios.get(`https://activitytrackerapi.herokuapp.com/records/?id=${id}`, { withCredentials: true })
+  axios.get(`https://reactactivitytracker.herokuapp.com/records/?id=${id}`, { withCredentials: true })
     .then(response => {
-      console.log('fetchrecords response', response);
       if (response.status === 200) {
         dispatch(loadRecords(response.data));
       }
-    })
-    .catch(error => {
-      console.error('FetchRecords error', error);
     });
 };
 
@@ -38,13 +34,9 @@ export const handleSuccesfulAuth = data => dispatch => {
 };
 
 export const handleLogout = () => dispatch => {
-  axios.delete('https://activitytrackerapi.herokuapp.com/logout', { withCredentials: true })
-    .then(response => {
-      console.log('handleLogout response', response);
+  axios.delete('https://reactactivitytracker.herokuapp.com/logout', { withCredentials: true })
+    .then(() => {
       dispatch(notLoggedIn());
       history.push('/login');
-    })
-    .catch(error => {
-      console.error('Logout error', error);
     });
 };

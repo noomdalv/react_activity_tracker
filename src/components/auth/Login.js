@@ -20,27 +20,22 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    document.getElementById("alertmsg").style.visibility = "hidden";
+    document.getElementById('alertmsg').style.visibility = 'hidden';
     const { email, password } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/sessions', {
+    axios.post('https://reactactivitytracker.herokuapp.com/sessions', {
       user: {
         email,
         password,
       },
     }, { withCredentials: true })
       .then(response => {
-        console.log('login response:', response);
         if (response.data.logged_in) {
           const { handleSuccesfulAuth } = this.props;
           handleSuccesfulAuth(response.data);
           history.push('/dashboard');
         } else {
-          console.log("user error, alert")
-          document.getElementById("alertmsg").style.visibility = "visible";
+          document.getElementById('alertmsg').style.visibility = 'visible';
         }
-      })
-      .catch(error => {
-        console.error('Login error =>', error);
       });
   }
 

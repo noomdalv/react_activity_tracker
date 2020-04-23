@@ -7,7 +7,6 @@ import styles from './Navbar.module.css';
 
 const Navbar = ({ handleLogout, status }) => (
   <div id={styles.navbar}>
-    { console.log('navbar status >', status)}
     <div id={styles.divlink}>
       <ul id={styles.linklist}>
         <li>

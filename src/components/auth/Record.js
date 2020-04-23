@@ -37,7 +37,7 @@ class Record extends React.Component {
     const {
       day, description, sleep, work, exercise, leisure,
     } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/records', {
+    axios.post('https://reactactivitytracker.herokuapp.com/records', {
       user: { id: status.user.data.id },
       record: { day, description },
       details: {
@@ -45,7 +45,6 @@ class Record extends React.Component {
       },
     }, { withCredentials: true })
       .then(response => {
-        console.log('submit record response', response);
         if (response.data.status === 'record_created') {
           this.setState({ description: '' });
           document.getElementById('recordForm').reset();
@@ -53,9 +52,6 @@ class Record extends React.Component {
           document.getElementById('sucessMsg').style.display = 'block';
           handleSuccesfulAuth(response.data);
         }
-      })
-      .catch(error => {
-        console.error('Registration error =>', error);
       });
   }
 
@@ -88,7 +84,6 @@ class Record extends React.Component {
           >
             Track
           </button>
-
 
           <div id="recordDetails" className={styles.recordDetails}>
             <h3>Time Tracker</h3>

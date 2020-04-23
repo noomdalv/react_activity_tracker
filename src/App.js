@@ -12,22 +12,20 @@ import styles from './App.module.css';
 
 export const history = createBrowserHistory();
 
-const App = () => {
-    return (
-      <Router history={history}>
-        <div id={styles.app}>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signup" component={Registration} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/stats" component={Stats} />
-            <Route exact path="/history" component={RecordHistory} />
-          </Switch>
-        </div>
-      </Router>
-    );
-}
+const App = () => (
+  <Router history={history}>
+    <div className={styles.app}>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signup" component={Registration} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/stats" component={Stats} />
+        <Route exact path="/history" component={RecordHistory} />
+      </Switch>
+    </div>
+  </Router>
+);
 
 export default App;

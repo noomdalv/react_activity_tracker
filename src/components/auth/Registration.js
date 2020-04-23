@@ -25,7 +25,7 @@ class Registration extends React.Component {
     const {
       name, email, password, passwordConfirmation,
     } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/registrations', {
+    axios.post('https://reactactivitytracker.herokuapp.com/registrations', {
       user: {
         name,
         email,
@@ -40,9 +40,6 @@ class Registration extends React.Component {
           history.push('/dashboard');
         }
       })
-      .catch(error => {
-        console.error('Registration error =>', error);
-      });
   }
 
   handleChange(event) {
