@@ -1,6 +1,6 @@
-# Capstone Project: Ruby on Rails API
+# Final Capstone Project: React Activity Tracker
 
-> This is the front-end application for the Final Capstone Project of the Microverse Technical Curriculum, this app is designed to connect to the endpoint of the [rails_api] (https://github.com/noomdalv/rails_api.git) project which provides back-end (database/RESTful)services to the front-end react/redux app.
+> This is the front-end application for the Final Capstone Project of the Microverse Technical Curriculum, this app is designed to connect to the endpoint of the [Rails API] (https://github.com/noomdalv/rails_api) project which provides back-end (database/RESTful)services to the front-end react/redux app.
 
 ## Built With
 
