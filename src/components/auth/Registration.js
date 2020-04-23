@@ -25,7 +25,7 @@ class Registration extends React.Component {
     const {
       name, email, password, passwordConfirmation,
     } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/registrations', {
+    axios.post('http://localhost:3001/registrations', {
       user: {
         name,
         email,
@@ -54,6 +54,7 @@ class Registration extends React.Component {
     } = this.state;
     return (
       <div className={styles.signup}>
+        <p className={styles.signupTitle}>Registration</p>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -91,7 +92,7 @@ class Registration extends React.Component {
             required
           />
 
-          <button type="submit">Register</button>
+        <button className={styles.signupBtn} type="submit">Register</button>
         </form>
         <Footer />
       </div>

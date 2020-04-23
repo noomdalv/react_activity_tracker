@@ -1,9 +1,14 @@
 .dashboard, .stats, .history {
-  height: 550px;
+  height: 600px;
   text-align: center;
 }
 
 /* DASHBOARD */
+
+.dashboard h1, .stats h1, .history h1 {
+  margin: 0;
+}
+
 .userDataContainer {
   width: 50%;
   margin: auto;
@@ -113,17 +118,36 @@
   position: absolute;
   bottom: 0;
   display: flex;
-  border-top: solid white 1px;
+  font-size: 13px;
   background: #41B5E9;
+  border: solid white 1px;
 }
 
 .menu div {
+  display: flex;
   flex: 1;
-  border-left: solid white 1px;
-  border-right: solid white 1px;
+  padding: 5px 0;
+  justify-content: center;
 }
 
 .menu a {
   text-decoration: none;
   color: white;
+  font-family: 'Fredoka One';
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+}
+
+.menu h3 {
+  margin: 0;
+  padding: 10px;
+  border-radius: 14px;
+  border: solid white 2px;
+}
+
+
+.menu h3:hover {
+  background-color: white;
+  color: #3490ba;
 }

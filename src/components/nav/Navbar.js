@@ -12,7 +12,6 @@ const Navbar = ({ handleLogout, status }) => (
         <li>
           {status.login === 'LOGGED_IN' ? (
             <Link to="/dashboard">
-              user:
               {status.user.data.name}
             </Link>
           )

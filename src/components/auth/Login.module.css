@@ -4,27 +4,9 @@
   background: #41B5E9;
 }
 
-/* SIGNUP */
-.signup form {
-  display: flex;
-  flex-direction: column;
-}
+/* LOGIN / SIGNUP */
 
-.signup input {
-  margin: auto;
-  margin-top: 5px;
-  width: 50%;
-}
-
-.signup button {
-  margin: auto;
-  margin-top: 20px;
-  width: 50%;
-}
-
-/* LOGIN */
-
-.title {
+.loginTitle, .signupTitle {
   margin: 0;
   text-align: center;
   color: white;
@@ -32,7 +14,7 @@
   font-size: 26px;
 }
 
-.loginForm {
+.loginForm, .signup form {
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -41,14 +23,14 @@
   border-radius: 10px;
 }
 
-.loginForm input {
+.loginForm input, .signup input {
   margin-top: 10px;
   padding: 10px;
   font-size: 14px;
   font-family: 'Ubuntu', sans-serif;
 }
 
-.loginBtn {
+.loginBtn, .signupBtn {
   width: 50%;
   margin: auto;
   margin-top: 20px;
@@ -64,7 +46,7 @@
   cursor: pointer;
 }
 
-.loginBtn:hover {
+.loginBtn:hover, .signupBtn:hover {
   background-color: #3490ba;
   color: white;
 }

@@ -22,7 +22,7 @@ class Login extends React.Component {
     event.preventDefault();
     document.getElementById('alertmsg').style.visibility = 'hidden';
     const { email, password } = this.state;
-    axios.post('https://activitytrackerapi.herokuapp.com/sessions', {
+    axios.post('http://localhost:3001/sessions', {
       user: {
         email,
         password,
@@ -49,7 +49,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
     return (
       <div className={styles.login}>
-        <p className={styles.title}>Activity Tracker</p>
+        <p className={styles.loginTitle}>Activity Tracker</p>
         <form className={styles.loginForm} onSubmit={this.handleSubmit}>
           <input
             type="email"
