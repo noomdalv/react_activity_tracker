@@ -1,6 +1,6 @@
 # Capstone Project: Ruby on Rails API
 
-> This is the front-end application React Activity Tracker, designed to connect to the rails API project which provides back-end services to the app.
+> This is the front-end application for the Final Capstone Project of the Microverse Technical Curriculum, this app is designed to connect to the endpoint of the [rails_api] (https://github.com/noomdalv/rails_api.git) project which provides back-end (database/RESTful)services to the front-end react/redux app.
 
 ## Built With
 
@@ -11,6 +11,10 @@
 
 ## Tools used
 
+- CSS (styling)
+- React-router-dom (routing)
+- Redux-persist (session)
+- Redux-thunk (middleware)
 - Heroku (deployment)
 
 
@@ -26,25 +30,21 @@ To get a local copy up and running go to the location you'd like to add the proj
 ### Setup
 
 ```console
-git clone https://github.com/noomdalv/rails_api.git
+git clone https://github.com/noomdalv/react_activity_tracker.git
 ```
 
 ```console
-cd rails_api
+cd react_activity_tracker
+```
+
+### Install dependencies and start
+
+```console
+npm install
 ```
 
 ```console
-bundle install
-```
-
-### DB and Server start
-
-```console
-rails db:create && rails db:migrate
-```
-
-```console
-rails server
+npm start
 ```
 
 ## Author
