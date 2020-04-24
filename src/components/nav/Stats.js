@@ -14,11 +14,13 @@ const Stats = ({ status, fetchRecords, recordData }) => {
     let hours = 0;
     let mins = 0;
     recordData.record_details.forEach(item => {
-      hours += parseInt(item[activity].split('.')[0], 10);
-      mins += parseFloat(item[activity].split('.')[1], 10);
+      if (item[activity] !== '0') {
+        hours += parseInt(item[activity].split('.')[0], 10);
+        mins += parseFloat(item[activity].split('.')[1]);
+      }
     });
     if (mins / 60 > 0) {
-      hours += parseInt(mins / 60, 10);
+      hours += parseInt((mins / 60), 10);
       mins %= 60;
     }
     return (`${hours}.${mins}`);
