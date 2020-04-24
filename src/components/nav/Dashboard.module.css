@@ -1,68 +1,177 @@
 .dashboard, .stats, .history {
   height: 600px;
+  color: white;
   text-align: center;
+  background: #41B5E9;
 }
 
 /* DASHBOARD */
 
 .dashboard h1, .stats h1, .history h1 {
   margin: 0;
+  padding: 10px 0;
+  background: white;
+  color: #41B5E9;
+  font-family: 'Ubuntu', sans-serif;
 }
 
-.userDataContainer {
-  width: 50%;
+.navHeader {
+  width: 80%;
   margin: auto;
-  text-align: left;
-}
-
-/* STATS */
-#statsInfo {
-  width: 90%;
-  margin: auto;
-  padding: 10px;
   text-align: center;
-  background: #fdfdfd;
+  color: white;
+  font-family: 'Fredoka One';
+  font-size: 18px;
 }
 
 /* RECORD */
-#addRecord {
-  width: 80%;
+.addRecord {
+  height: 100%;
+  width: 95%;
   margin: auto;
-  background: #fdfdfd
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.addEntry {
+  display: grid;
+  background: white;
+  color: #41B5E9;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 10px;
+}
+
+.addEntryText {
+  padding: 10px 10px 0 20px;
+  text-align: left;
+}
+
+.addEntryText h4 {
+  width: max-content;
+  margin: 0;
+  padding: 8px;
+  background: #41B5E9;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.addEntryText ol {
+  padding-left: 20px;
+  margin: 0;
+  text-align: left;
+}
+
+.addEntryText li {
+  padding-top: 10px;
+  width: 100%;
+}
+
+
+.addEntryData {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px 5px 5px;
+  text-align: left;
+}
+
+.addEntryData input {
+  margin: 3px 0;
 }
 
 .recordDetails {
-  margin-top: 20px;
   display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
 }
 
-#description {
-  height: 30px;
+.description {
+  height: 40px;
+  margin: 5px 0;
+}
+
+.trackBtn {
+  width: 70%;
+  margin: auto;
   margin-top: 5px;
+  background-color: white;
+  border: solid #41B5E9 2px;
+  border-radius: 10px;
+  color: #41B5E9;
+  padding: 3px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Fredoka One';
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.trackBtn:hover {
+  background-color: #41B5E9;
+  color: white;
 }
 
 .recordDetails h3, .recordDetails h6 {
+  width: 100%;
+  color: #41B5E9;
   height: max-content;
-  margin: 5px;
+  margin: 5px auto;
+  text-align: center;
 }
 
+
 .recordDetails input {
-  width: 35px;
+  width: 34px;
+  padding-right: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+}
+
+.trackerGrid {
+  width: 80%;
   margin: auto;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .trackerGrid div {
   display: grid;
   margin-top: 5px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 50% 20% 20%;
+  text-align: left;
 }
 
 .trackerGrid button {
   margin-top: 15px;
 }
 
-.oddGrid {
-  background: #fdfdfd;
+.activity {
+  margin: auto;
+  background: white;
+  color: #41B5E9;
+  padding-left: 20px;
+}
+
+.activityBtn {
+  width: 40%;
+  margin: auto;
+  margin: 5px;
+  background-color: white;
+  border: solid #41B5E9 2px;
+  border-radius: 10px;
+  color: #41B5E9;
+  padding: 3px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Fredoka One';
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.activityBtn:hover {
+  background-color: #41B5E9;
+  color: white;
 }
 
 .success {
@@ -72,35 +181,56 @@
   display: none;
 }
 
+/* STATS */
+
+.statsInfo {
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  background: #41B5E9;
+  font-family: 'Fredoka One';
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+.notfound {
+  width: 80%;
+  margin: auto;
+  font-size: 12px;
+  padding-top: 150px;
+}
+
 
 /* HISTORY */
 
 .recordHistory {
   overflow: auto;
   height: 400px;
-  width: 95%;
   margin: auto;
-  background: #fafafa;
+  padding: 5px;
 }
 
 .record {
   height: max-content;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 10px;
-  padding: 2px;
+  margin-top: 5px;
+  padding: 5px;
+  color: #41B5E9;
+  background: white;
+  font-family: 'Ubuntu', sans-serif;
   list-style-type: none;
   text-align: left;
-  background: #dddddd;
+  border-radius: 8px;
 }
 
 .recordInfo p {
-  margin: 0;
-  padding: 0;
+  margin: 2px;
 }
 
 .recordDescription {
-  margin-top: 5px;
+  padding-top: 5px;
   word-break:break-all
 }
 
@@ -109,12 +239,19 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   text-align: center;
+  font-size: 14px;
+}
+
+.record b {
+  padding: 2px 0;
+  color: black;
 }
 
 /* MENU */
 
 .menu {
   width: 100%;
+  padding: 5px 0;
   position: absolute;
   bottom: 0;
   display: flex;
@@ -131,11 +268,10 @@
 }
 
 .menu a {
+  width: 80%;
   text-decoration: none;
   color: white;
   font-family: 'Fredoka One';
-  font-size: 14px;
-  font-weight: bold;
   letter-spacing: 0.08em;
 }
 
@@ -143,11 +279,13 @@
   margin: 0;
   padding: 10px;
   border-radius: 14px;
+  font-size: 13px;
   border: solid white 2px;
 }
 
 
 .menu h3:hover {
   background-color: white;
-  color: #3490ba;
+  color: #41B5E9;
+  border: solid #41B5E9 2px;
 }

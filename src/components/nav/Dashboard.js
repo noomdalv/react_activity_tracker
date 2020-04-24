@@ -10,16 +10,9 @@ const Dashboard = ({ status }) => (
   <div className={styles.dashboard}>
     { status.login === 'LOGGED_IN' ? (
       <div>
-        <h1>Dashboard</h1>
-        <div className={styles.userDataContainer}>
-          <p>
-            <b>User: </b>
-            { status.user.data.name }
-          </p>
-          <p>
-            <b>Email: </b>
-            { status.user.data.email }
-          </p>
+        <h1 className={styles.dashTitle}>Dashboard</h1>
+        <div className={styles.navHeader}>
+          <p> TRACK YOUR DAILY ROUTINE </p>
         </div>
 
         <div id={styles.recordContainer}>

@@ -25,7 +25,7 @@ class Registration extends React.Component {
     const {
       name, email, password, passwordConfirmation,
     } = this.state;
-    axios.post('http://localhost:3001/registrations', {
+    axios.post('https://activitytrackerapi.herokuapp.com/registrations', {
       user: {
         name,
         email,
@@ -39,7 +39,7 @@ class Registration extends React.Component {
           handleSuccesfulAuth(response.data);
           history.push('/dashboard');
         }
-      })
+      });
   }
 
   handleChange(event) {
@@ -92,7 +92,7 @@ class Registration extends React.Component {
             required
           />
 
-        <button className={styles.signupBtn} type="submit">Register</button>
+          <button className={styles.signupBtn} type="submit">Register</button>
         </form>
         <Footer />
       </div>

@@ -18,10 +18,16 @@
 - Heroku (deployment)
 
 
-## API Link
+## App Link
 
 [Live Link](https://reactactivitytracker.herokuapp.com/)
 
+## App Screenshots
+![screenshot](./src/utils/screenshots/activitytracker_signup.png)
+![screenshot](./src/utils/screenshots/activitytracker_login.png)
+![screenshot](./src/utils/screenshots/activitytracker_dashboard.png)
+![screenshot](./src/utils/screenshots/activitytracker_history.png)
+![screenshot](./src/utils/screenshots/activitytracker_stats.png)
 
 ## Getting Started
 
