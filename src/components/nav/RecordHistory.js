@@ -14,6 +14,9 @@ const RecordHistory = ({ status, fetchRecords, recordData }) => {
     return (
       <div className={styles.history}>
         <h1>History</h1>
+        <div className={styles.navHeader}>
+          <p> PAST RECORDS </p>
+        </div>
         <div className={styles.recordHistory}>
           <div>
             { recordData.records.length > 0 ? recordData.records.map(record => {
@@ -24,39 +27,27 @@ const RecordHistory = ({ status, fetchRecords, recordData }) => {
                   <div className={styles.recordInfo}>
                     <p>
                       <b>Day:</b>
-                      {record.day}
+                      <span>{record.day}</span>
                     </p>
                     <p className={styles.recordDescription}>
                       <b>Description:</b>
                       <br />
-                      {record.description}
+                      <span>{record.description}</span>
                     </p>
                   </div>
                   <div className={styles.details}>
-                    <b>
-                      Sleep:
-                      <br />
-                      {info.sleep}
-                    </b>
-                    <b>
-                      Work:
-                      <br />
-                      {info.work}
-                    </b>
-                    <b>
-                      Leisure:
-                      <br />
-                      {info.leisure}
-                    </b>
-                    <b>
-                      Exercise:
-                      <br />
-                      {info.exercise}
-                    </b>
+                    <b>Sleep:</b>
+                    <span>{info.sleep}</span>
+                    <b>Work:</b>
+                    <span>{info.work}</span>
+                    <b>Leisure:</b>
+                    <span>{info.leisure}</span>
+                    <b>Exercise:</b>
+                    <span>{info.exercise}</span>
                   </div>
                 </div>
               );
-            }) : <h1>No Records Found...</h1> }
+            }) : <div className={styles.notfound}><h1>No Records Found...</h1></div> }
           </div>
         </div>
         <Menu />

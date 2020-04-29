@@ -6,13 +6,12 @@ import { handleLogout } from '../../actions';
 import styles from './Navbar.module.css';
 
 const Navbar = ({ handleLogout, status }) => (
-  <div id={styles.navbar}>
-    <div id={styles.divlink}>
-      <ul id={styles.linklist}>
+  <div className={styles.navbar}>
+    <div className={styles.divlink}>
+      <ul className={styles.linklist}>
         <li>
           {status.login === 'LOGGED_IN' ? (
             <Link to="/dashboard">
-              user:
               {status.user.data.name}
             </Link>
           )

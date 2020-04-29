@@ -49,7 +49,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
     return (
       <div className={styles.login}>
-        <div id="alertmsg" className={styles.alertmsg}>VERIFY YOUR INFORMATION</div>
+        <p className={styles.loginTitle}>Activity Tracker</p>
         <form className={styles.loginForm} onSubmit={this.handleSubmit}>
           <input
             type="email"
@@ -70,6 +70,7 @@ class Login extends React.Component {
           />
           <button className={styles.loginBtn} type="submit">Login</button>
         </form>
+        <div id="alertmsg" className={styles.alertmsg}>PLEASE VERIFY YOUR INFORMATION</div>
         <Footer />
       </div>
     );

@@ -58,32 +58,42 @@ class Record extends React.Component {
   render() {
     const { day, description } = this.state;
     return (
-      <div id={styles.addRecord}>
-
+      <div className={styles.addRecord}>
         <form onSubmit={this.handleSubmitRecord} id="recordForm">
-          <h4>ADD A NEW ENTRY</h4>
-          <span>Day:</span>
-          <input type="date" name="day" value={day} onChange={this.handleChange} />
-          <br />
-          <textarea
-            id={styles.description}
-            name="description"
-            placeholder="Description..."
-            value={description}
-            maxLength="40"
-            onChange={this.handleChange}
-          />
-          <br />
-          <button
-            id="trackBtn"
-            type="button"
-            onClick={() => {
-              document.getElementById('recordDetails').style.display = 'block';
-              document.getElementById('sucessMsg').style.display = 'none';
-            }}
-          >
-            Track
-          </button>
+          <div className={styles.addEntry}>
+            <div className={styles.addEntryText}>
+              <h4>ADD A NEW ENTRY</h4>
+              <ol>
+                <li>Select a Day</li>
+                <li>Add Description</li>
+                <li>Track Activities</li>
+              </ol>
+            </div>
+            <div className={styles.addEntryData}>
+              <span>Day</span>
+              <input type="date" name="day" value={day} onChange={this.handleChange} />
+              <span>Description</span>
+              <textarea
+                className={styles.description}
+                name="description"
+                placeholder="Description..."
+                value={description}
+                maxLength="40"
+                onChange={this.handleChange}
+              />
+              <button
+                className={styles.trackBtn}
+                type="button"
+                onClick={() => {
+                  document.getElementById('recordDetails').style.display = 'block';
+                  document.getElementById('sucessMsg').style.display = 'none';
+                }}
+              >
+                Track Activities
+              </button>
+            </div>
+
+          </div>
 
           <div id="recordDetails" className={styles.recordDetails}>
             <h3>Time Tracker</h3>
@@ -93,7 +103,7 @@ class Record extends React.Component {
                 <h6>Hours</h6>
                 <h6>Minutes</h6>
               </div>
-              <div className={styles.oddGrid}>
+              <div className={styles.activity}>
                 <span>Sleep</span>
                 <input
                   type="number"
@@ -115,7 +125,7 @@ class Record extends React.Component {
                 />
               </div>
 
-              <div>
+              <div className={styles.activity}>
                 <span>Work/Study</span>
                 <input
                   type="number"
@@ -137,7 +147,7 @@ class Record extends React.Component {
                 />
               </div>
 
-              <div className={styles.oddGrid}>
+              <div className={styles.activity}>
                 <span>Exercise</span>
                 <input
                   type="number"
@@ -159,7 +169,7 @@ class Record extends React.Component {
                 />
               </div>
 
-              <div>
+              <div className={styles.activity}>
                 <span>Leisure/Relax</span>
                 <input
                   type="number"
@@ -180,8 +190,9 @@ class Record extends React.Component {
                   onChange={this.handleTimeChange}
                 />
               </div>
-              <button type="submit">Save</button>
+              <button className={styles.activityBtn} type="submit">Save</button>
               <button
+                className={styles.activityBtn}
                 type="button"
                 onClick={() => {
                   document.getElementById('recordDetails').style.display = 'none';

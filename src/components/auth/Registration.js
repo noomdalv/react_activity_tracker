@@ -39,7 +39,7 @@ class Registration extends React.Component {
           handleSuccesfulAuth(response.data);
           history.push('/dashboard');
         }
-      })
+      });
   }
 
   handleChange(event) {
@@ -54,6 +54,7 @@ class Registration extends React.Component {
     } = this.state;
     return (
       <div className={styles.signup}>
+        <p className={styles.signupTitle}>Registration</p>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -91,7 +92,7 @@ class Registration extends React.Component {
             required
           />
 
-          <button type="submit">Register</button>
+          <button className={styles.signupBtn} type="submit">Register</button>
         </form>
         <Footer />
       </div>

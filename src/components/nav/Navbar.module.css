@@ -1,28 +1,42 @@
 body {
-  border: solid black 2px;
-  border-radius: 5px;
+  background: #f3f3f3;
 }
 
-#navbar {
+.navbar {
   width: 100%;
+  padding: 5px 0;
   display: flex;
   background: #41B5E9;
+  border-bottom: solid white 1px;
 }
 
-#divlink {
+.divlink {
   width: 100%;
 }
 
-#linklist {
+.linklist {
   display: flex;
   justify-content: flex-end;
   list-style-type: none;
 }
 
-#linklist a {
-  margin-right: 20px;
+.linklist a {
+  margin-right: 15px;
+  padding: 10px;
   text-decoration: none;
   color: white;
-  font-size: 20px;
+  font-family: 'Fredoka One';
+  font-size: 16px;
   font-weight: bold;
+  letter-spacing: 0.08em;
+  border: solid white 2px;
+  border-radius: 14px;
+}
+
+.linklist a:hover {
+  color: #41B5E9;
+  letter-spacing: 0.08em;
+  border-radius: 14px;
+  color: #41B5E9;
+  background: white;
 }

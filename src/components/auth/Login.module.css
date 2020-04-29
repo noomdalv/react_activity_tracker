@@ -1,55 +1,67 @@
 .login, .signup {
-  margin-top: 50px;
+  padding-top: 50px;
   height: 550px;
+  background: #41B5E9;
 }
 
-/* SIGNUP */
-.signup form {
+/* LOGIN / SIGNUP */
+
+.loginTitle, .signupTitle {
+  margin: 0;
+  text-align: center;
+  color: white;
+  font-family: 'Fredoka One';
+  font-size: 26px;
+}
+
+.loginForm, .signup form {
+  width: 50%;
   display: flex;
   flex-direction: column;
-}
-
-.signup input {
+  padding: 30px;
   margin: auto;
-  margin-top: 5px;
-  width: 50%;
+  border-radius: 10px;
 }
 
-.signup button {
-  margin: auto;
-  margin-top: 20px;
-  width: 50%;
-}
-
-/* LOGIN */
-.loginForm {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  margin-top: 50px;
-}
-
-.loginForm input {
+.loginForm input, .signup input {
   margin-top: 10px;
   padding: 10px;
   font-size: 14px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
-.loginBtn {
+.loginBtn, .signupBtn {
+  width: 50%;
+  margin: auto;
   margin-top: 20px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  color: #41B5E9;
+  padding: 7px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Fredoka One';
   font-size: 16px;
+  cursor: pointer;
+}
+
+.loginBtn:hover, .signupBtn:hover {
+  background-color: #3490ba;
+  color: white;
 }
 
 .footer {
-  height: max-content;
   width: 100%;
   display: flex;
   position: absolute;
   bottom: 0;
+  padding: 5px 0;
   justify-content: center;
   align-items: flex-end;
   color: white;
+  font-family: 'Ubuntu', sans-serif;
+  border-top: solid white 1px;
   background: #41B5E9;
 }
 
@@ -72,8 +84,9 @@
 .alertmsg {
   visibility: hidden;
   text-align: center;
-  color: red;
+  font-family: 'Fredoka One';
   font-size: 20px;
+  color: white;
 }
 
 @media only screen and (max-width: 640px) {

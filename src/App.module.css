@@ -1,7 +1,9 @@
 .app {
+  width: 400px;
   position: relative;
   margin: auto;
-  background: #f1f1f1;
-  font-family: "Helvetica Neue";
+  margin-top: 50px;
+  border-radius: 5px;
   font-weight: normal;
+  background: white;
 }

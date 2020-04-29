@@ -11,17 +11,30 @@ const Stats = ({ status, fetchRecords, recordData }) => {
   }, [fetchRecords, status.user.data.id]);
 
   const getStats = activity => {
-    let time = 0;
-    recordData.record_details.map(item => time += parseFloat(item[activity]));
-    return time.toFixed(2);
+    let hours = 0;
+    let mins = 0;
+    recordData.record_details.forEach(item => {
+      if (item[activity] !== '0') {
+        hours += parseInt(item[activity].split('.')[0], 10);
+        mins += parseFloat(item[activity].split('.')[1]);
+      }
+    });
+    if (mins / 60 > 0) {
+      hours += parseInt((mins / 60), 10);
+      mins %= 60;
+    }
+    return (`${hours}.${mins}`);
   };
 
   if (status.login === 'LOGGED_IN') {
     return (
       <div className={styles.stats}>
         <h1>Stats</h1>
+        <div className={styles.navHeader}>
+          <p> SUMMARY OF STATISTICS </p>
+        </div>
         { recordData.records.length > 0 ? (
-          <div id={styles.statsInfo}>
+          <div className={styles.statsInfo}>
             <p>
               <b>Account created on:</b>
               <br />
@@ -59,7 +72,7 @@ const Stats = ({ status, fetchRecords, recordData }) => {
               { getStats('leisure') }
             </p>
           </div>
-        ) : (<h1>No Stats Found...</h1>) }
+        ) : (<div className={styles.notfound}><h1>No Stats Found...</h1></div>) }
 
         <Menu />
       </div>
