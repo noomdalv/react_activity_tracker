@@ -29,6 +29,11 @@
 ![screenshot](./src/utils/screenshots/activitytracker_history.png)
 ![screenshot](./src/utils/screenshots/activitytracker_stats.png)
 
+## Future Features
+
+- User profile section
+- User profile image upload
+
 ## Getting Started
 
 To get a local copy up and running go to the location you'd like to add the project and then run the commands below
